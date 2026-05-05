@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe CGC ELITE — Ana Belén Ferrer Callejón</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #E8302A;
+    --orange: #F47B20;
+    --pink: #E5406A;
+    --purple: #8B4FA8;
+    --blue: #4A7FC1;
+    --dark: #1C1820;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F2F8;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── BARRA RAINBOW ─── */
+  .rainbow {
+    height: 6px;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+
+  /* ─── WRAPPER ─── */
+  .page { max-width: 760px; margin: 0 auto; padding: 80px 24px 80px; }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 20px;
+    padding: 48px 56px 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .badge-programa {
+    font-size: 11px; font-weight: 800; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--white);
+    background: linear-gradient(to right, var(--purple), var(--blue));
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-pais {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    border: 1.5px solid var(--orange);
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .header h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.1; color: var(--white);
+    margin-bottom: 8px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .header h1 .grad {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-sub {
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    font-weight: 400; letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .header-meta {
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+  .meta-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 10px 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .meta-icon { font-size: 18px; }
+  .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.45); font-weight: 600; display: block; }
+  .meta-value { font-size: 14px; font-weight: 700; color: var(--white); display: block; }
+
+  /* ─── SECCIÓN GENERAL ─── */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.07);
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 800; letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 10px;
+    color: var(--purple);
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1.1; margin-bottom: 22px;
+    color: var(--dark);
+  }
+  .section-title .accent { color: var(--pink); }
+  .section p {
+    font-size: 15px; line-height: 1.75; color: #444;
+    font-weight: 400;
+  }
+  .section p + p { margin-top: 14px; }
+
+  /* ─── BLOQUE DESTACADO ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1A0B2E, #2D1654);
+    border-radius: 12px; padding: 28px 28px;
+    margin-top: 24px;
+  }
+  .highlight-box p {
+    font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; font-weight: 300;
+  }
+  .highlight-box strong {
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  /* ─── LISTA DE ITEMS ─── */
+  .item-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px;
+    background: rgba(139,79,168,0.06);
+    border-left: 5px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+  }
+  .item.red   { background: rgba(232,48,42,0.06);  border-left-color: var(--red); }
+  .item.orange{ background: rgba(244,123,32,0.07); border-left-color: var(--orange); }
+  .item.pink  { background: rgba(229,64,106,0.06); border-left-color: var(--pink); }
+  .item.blue  { background: rgba(74,127,193,0.07); border-left-color: var(--blue); }
+  .item-icon  { font-size: 22px; flex-shrink: 0; line-height: 1.4; }
+  .item-text  { font-size: 15px; color: #333; font-weight: 600; line-height: 1.5; }
+  .item-text span { display: block; font-size: 13px; font-weight: 400; color: #666; margin-top: 3px; }
+
+  /* ─── HORARIOS ─── */
+  .horario-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .horario-card {
+    flex: 1; min-width: 140px;
+    background: linear-gradient(135deg, #F0EEFF, #E8F4FF);
+    border-radius: 12px; padding: 18px 20px;
+    text-align: center;
+  }
+  .horario-dia { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
+  .horario-info { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+
+  /* ─── COMPROMISO BAR ─── */
+  .compromiso-wrap { margin-top: 20px; }
+  .compromiso-label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .compromiso-label span { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .compromiso-label strong { font-size: 16px; font-weight: 900; color: var(--purple); }
+  .bar-bg {
+    height: 12px; background: #EEE; border-radius: 99px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(to right, var(--purple), var(--pink), var(--orange));
+    width: 90%;
+    transition: width 1s ease;
+  }
+  .compromiso-nota {
+    font-size: 13px; color: #888; margin-top: 10px; font-style: italic;
+  }
+
+  /* ─── OBJETIVO GENERAL ─── */
+  .objetivo-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .objetivo-section::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to top, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .objetivo-section .section-eyebrow { color: #C89FE0; }
+  .objetivo-section .section-title { color: var(--white); }
+  .objetivo-section .section-title .accent {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .objetivo-section p {
+    font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.8); font-weight: 400;
+  }
+
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 24px 0 8px;
+  }
+  .footer p {
+    font-size: 12px; color: #AAA; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .footer .rainbow-line {
+    height: 4px; width: 80px; margin: 12px auto 0;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    border-radius: 99px;
+  }
+
+  /* ─── CLASE VIRTUAL ─── */
+  .clase-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .clase-section::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .clase-grid {
+    display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0;
+  }
+  .clase-card {
+    flex: 1; min-width: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px 16px;
+    text-align: center;
+  }
+  .clase-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .clase-card-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px;
+  }
+  .clase-card-value {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 22px; color: var(--white);
+  }
+  .clase-nota {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    font-style: italic; margin-bottom: 24px;
+    border-left: 3px solid rgba(255,255,255,0.15);
+    padding-left: 14px;
+  }
+  .clase-plan { display: flex; flex-direction: column; gap: 12px; }
+  .clase-plan-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
+  }
+  .clase-plan-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page { margin: 14mm 12mm; size: A4; }
+    .rainbow { display: none; }
+    body { background: white; }
+    .page { padding: 0; max-width: 100%; }
+
+    /* evita cortes dentro de cada bloque */
+    .section,
+    .objetivo-section,
+    .clase-section,
+    .informe-section,
+    .cierre-section,
+    .highlight-box,
+    .item,
+    .horario-card,
+    .clase-card,
+    .clase-plan,
+    .habito-card,
+    .tl-item,
+    .meta-item,
+    .footer {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    /* cada sección grande empieza sin cortarse */
+    .section,
+    .objetivo-section,
+    .clase-section {
+      break-before: auto;
+      page-break-before: auto;
+    }
+
+    /* grillas y listas no se parten */
+    .item-list,
+    .horario-grid,
+    .clase-grid,
+    .clase-plan,
+    .habitos-grid,
+    .header-meta,
+    .timeline {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    /* colores e imágenes de fondo se imprimen */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* separación entre secciones en impresión */
+    .section,
+    .objetivo-section,
+    .clase-section {
+      margin-bottom: 14px;
+    }
+
+    .header {
+      margin-bottom: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow"></div>
+
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge-programa">CGC ELITE 1:1</span>
+      <span class="badge-pais">España</span>
+    </div>
+    <h1><span class="grad">Ana Belén</span><br>Ferrer Callejón</h1>
+    <p class="header-sub">Informe de diagnóstico y plan personalizado — Mayo 2026</p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-icon">🎂</span>
+        <div>
+          <span class="meta-label">Edad</span>
+          <span class="meta-value">44 años</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📍</span>
+        <div>
+          <span class="meta-label">Ubicación</span>
+          <span class="meta-value">Galicia, España</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💻</span>
+        <div>
+          <span class="meta-label">Modalidad</span>
+          <span class="meta-value">Virtual</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">🩰</span>
+        <div>
+          <span class="meta-label">Disciplina</span>
+          <span class="meta-value">Yoga · Danza · G. Rítmica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PERFIL DEL ATLETA ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Diagnóstico inicial</p>
+    <h2 class="section-title">Perfil del <span class="accent">atleta</span></h2>
+    <p>Ana Belén es profesora de yoga y danza contemporánea en Galicia, con raíces en Andalucía. Su trayectoria corporal abarca décadas: desde niña mostró una flexibilidad natural excepcional —espagats, arcos, contorsión— y se formó como entrenadora de gimnasia rítmica, llevando a sus alumnas a medallistas de oro, plata y bronce en competición.</p>
+    <p>A lo largo de los años amplió su formación con yoga, osteopatía, chi kung y clown, construyendo un perfil corporal altamente consciente y técnico. Hoy trabaja de forma autónoma con grupos de personas mayores (yoga terapéutico y chi kung) y con niños en contexto escolar (yoga, gimnasia rítmica y danza contemporánea).</p>
+    <p>Su nivel de conocimiento corporal es <strong>avanzado</strong>. Llega al programa en una etapa de recuperación física personal, buscando estructura y acompañamiento profesional para retomar lo que su cuerpo puede dar.</p>
+  </div>
+
+  <!-- ══════════ LESIONES ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Consideraciones de salud</p>
+    <h2 class="section-title">Lesiones y <span class="accent">limitaciones</span></h2>
+    <p>Ana Belén presenta un historial médico significativo. Cada progresión deberá contemplar estos antecedentes con criterio preventivo y escucha activa.</p>
+    <div class="item-list">
+      <div class="item red">
+        <span class="item-icon">🚗</span>
+        <div class="item-text">Tres accidentes de tráfico graves
+          <span>Impacto acumulado en la estructura corporal que requiere progresiones especialmente controladas.</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">⚡</span>
+        <div class="item-text">Neuralgia del trigémino
+          <span>Afectación neurológica que puede influir en la tolerancia al esfuerzo en zona cervical y cabeza.</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">🦴</span>
+        <div class="item-text">Protrusiones cervicales (hace ~15 años)
+          <span>Limitación superada en gran medida: recuperó movilidad del brazo derecho contra pronóstico médico.</span>
+        </div>
+      </div>
+      <div class="item pink">
+        <span class="item-icon">🔻</span>
+        <div class="item-text">Dolor lumbar crónico
+          <span>Se manifiesta al despertar y en sedestación prolongada. No duele durante yoga ni en extensiones (arcos). Indicador: origen postural/de carga, no articular agudo.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">🏃</span>
+        <div class="item-text">Pérdida de masa muscular post-COVID
+          <span>Cambios metabólicos en proceso de recuperación con acompañamiento médico. Cuádriceps derecho y glúteos con tensión acumulada.</span>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p>El enfoque de todo el proceso será <strong>preventivo, progresivo y con escucha activa</strong>. Ningún objetivo se descarta, pero la base estructural se consolida antes de cualquier carga avanzada.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ OBJETIVOS ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Metas declaradas</p>
+    <h2 class="section-title">Objetivos <span class="accent">declarados</span></h2>
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">🌉</span>
+        <div class="item-text">Recuperar arcos y puentes de forma segura
+          <span>Objetivo principal. Retomar extensiones de columna con base muscular sólida y acompañamiento técnico.</span>
+        </div>
+      </div>
+      <div class="item blue">
+        <span class="item-icon">🦵</span>
+        <div class="item-text">Progresar en splits
+          <span>Participación en grupos CGC de splits para avanzar desde su rango actual de forma estructurada.</span>
+        </div>
+      </div>
+      <div class="item blue">
+        <span class="item-icon">💪</span>
+        <div class="item-text">Reconectar con su cuerpo y su capacidad
+          <span>Retomar el movimiento activo para sí misma, después de años priorizando el trabajo con alumnos.</span>
+        </div>
+      </div>
+      <div class="item blue">
+        <span class="item-icon">🩰</span>
+        <div class="item-text">Mejorar rendimiento como profesora en movimiento
+          <span>Poder demostrar y guiar con mayor soltura en sus clases de danza, yoga y gimnasia rítmica.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOTIVACIÓN ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Análisis interno</p>
+    <h2 class="section-title">Motivación y <span class="accent">necesidad detectada</span></h2>
+    <p>Más allá del objetivo físico, Ana Belén llega al programa buscando algo que ha dado a otros durante años y que hoy pide para sí misma: <strong>acompañamiento profesional, estructura y guía</strong>.</p>
+    <p>Ha pasado décadas siendo la referencia técnica de sus alumnas de gimnasia, de sus grupos de yoga, de los niños que entrena. Sabe cómo funciona el cuerpo, conoce la progresión, pero trabajar sola sin un proceso externo que la sostenga no es lo mismo. El programa CGC ELITE representa para Ana Belén un espacio propio dentro de una vida volcada hacia afuera.</p>
+    <p>También hay una necesidad de <strong>reconexión personal con su cuerpo en un contexto de vida exigente</strong>: autónoma en zona rural, con alumnado diverso, con recursos limitados y poco tiempo para ella. Su historial de superación —recuperar movilidad del brazo derecho contra pronóstico médico— demuestra una determinación extraordinaria y una relación de confianza profunda con su propio cuerpo. Ese es su mayor activo.</p>
+  </div>
+
+  <!-- ══════════ DISPONIBILIDAD ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Logística del proceso</p>
+    <h2 class="section-title">Disponibilidad y <span class="accent">modalidad</span></h2>
+    <p>Modalidad <strong>virtual</strong> desde Galicia, España. Ana Belén trabaja todas las tardes como profesora de yoga — su disponibilidad real para entrenar es <strong>por las mañanas de lunes a viernes</strong>. El mes siguiente tendrá más horas libres.</p>
+    <div class="horario-grid">
+      <div class="horario-card">
+        <div class="horario-dia">Lunes</div>
+        <div class="horario-info">Libre hasta las 15:00<br><span style="font-size:11px;color:#888;">Trabaja 15:00–21:30 · 2 clases yoga</span></div>
+      </div>
+      <div class="horario-card" style="background: linear-gradient(135deg, #FFF0F0, #FFE8E8);">
+        <div class="horario-dia" style="color: var(--red);">Martes</div>
+        <div class="horario-info" style="color:#999;">No disponible<br><span style="font-size:11px;color:#bbb;">Trabaja mañana y tarde hasta tarde</span></div>
+      </div>
+      <div class="horario-card">
+        <div class="horario-dia">Miércoles</div>
+        <div class="horario-info">Libre hasta las 15:00<br><span style="font-size:11px;color:#888;">Trabaja 15:00–21:30 · 1 clase yoga</span></div>
+      </div>
+      <div class="horario-card">
+        <div class="horario-dia">Jueves</div>
+        <div class="horario-info">Libre hasta las 15:00<br><span style="font-size:11px;color:#888;">Trabaja 15:00–20:00 · 1 clase yoga</span></div>
+      </div>
+      <div class="horario-card">
+        <div class="horario-dia">Viernes</div>
+        <div class="horario-info">Libre hasta las 15:00<br><span style="font-size:11px;color:#888;">Trabaja 15:00–22:00 · 2 clases yoga</span></div>
+      </div>
+      <div class="horario-card">
+        <div class="horario-dia">Sábados</div>
+        <div class="horario-info">Grupos CGC<br><span style="font-size:11px;color:#888;">Splits y prep. física</span></div>
+      </div>
+    </div>
+    <div class="item-list" style="margin-top: 20px;">
+      <div class="item blue">
+        <span class="item-icon">⭐</span>
+        <div class="item-text">Clase en vivo — Jueves fijo
+          <span>14:30 h (Perú) · 21:30 h (España) — Ella termina su clase de yoga a las 20:00, tiene 1.5 h para descansar antes.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">📋</span>
+        <div class="item-text">Plan semanal acordado
+          <span>1 clase en vivo los jueves · 1 clase grabada de trabajo autónomo · Grupos CGC los sábados</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">⏸️</span>
+        <div class="item-text">Pausa de danza contemporánea (primer mes)
+          <span>Decisión consciente para priorizar el proceso CGC y permitir una base sólida sin sobrecargar.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">📅</span>
+        <div class="item-text">Nota: el mes siguiente tendrá más disponibilidad
+          <span>Se revisará el horario al inicio del segundo mes para optimizar la frecuencia de entrenamiento.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ COMPROMISO ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Evaluación interna</p>
+    <h2 class="section-title">Nivel de <span class="accent">compromiso</span></h2>
+    <p>Ana Belén llega con claridad de objetivos, disponibilidad estructurada y disposición para adaptar su semana al proceso. Su experiencia como entrenadora le da disciplina corporal y comprensión técnica que facilitan el trabajo. El hecho de pausar su propia clase de danza para priorizar CGC habla de una decisión consciente y comprometida.</p>
+    <div class="compromiso-wrap">
+      <div class="compromiso-label">
+        <span>Nivel de compromiso estimado</span>
+        <strong>ALTO</strong>
+      </div>
+      <div class="bar-bg">
+        <div class="bar-fill"></div>
+      </div>
+      <p class="compromiso-nota">Se espera constancia, seguimiento de indicaciones técnicas y devoluciones honestas sobre el proceso.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ OBJETIVO GENERAL ══════════ -->
+  <div class="objetivo-section">
+    <p class="section-eyebrow">Objetivo del proceso</p>
+    <h2 class="section-title">Objetivo <span class="accent">general</span></h2>
+    <p>Acompañar a Ana Belén en la recuperación segura y progresiva de su movilidad espinal —arcos y puentes—, el fortalecimiento funcional del tren inferior y la zona lumbar, y la reconexión técnica con su propio cuerpo a través de un proceso personalizado, consciente y adaptado a su historial médico y nivel de conocimiento avanzado.</p>
+  </div>
+
+  <!-- ══════════ CLASE VIRTUAL ══════════ -->
+  <div class="clase-section">
+    <p class="section-eyebrow" style="color:#C89FE0;">Inicio del proceso</p>
+    <h2 class="section-title" style="color:var(--white);">Clase virtual <span style="background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">semanal</span></h2>
+    <div class="clase-grid">
+      <div class="clase-card">
+        <div class="clase-card-icon">📅</div>
+        <div class="clase-card-label">Día fijo</div>
+        <div class="clase-card-value">Jueves</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🕑</div>
+        <div class="clase-card-label">Hora Perú</div>
+        <div class="clase-card-value">2:30 PM</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🕙</div>
+        <div class="clase-card-label">Hora España</div>
+        <div class="clase-card-value">9:30 PM</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">💻</div>
+        <div class="clase-card-label">Modalidad</div>
+        <div class="clase-card-value">Virtual</div>
+      </div>
+    </div>
+    <div class="clase-nota">
+      Ana Belén termina su clase de yoga a las 20:00 h (España) — tiene 1.5 h para descansar y conectarse con energía.
+    </div>
+    <div class="clase-plan">
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--purple),var(--blue));"></span>
+        <span>1 clase en vivo — jueves semanales</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--orange),var(--pink));"></span>
+        <span>1 clase grabada — práctica autónoma durante la semana</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--pink),var(--purple));"></span>
+        <span>Grupos CGC los sábados — splits y preparación física</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informe de diagnóstico inicial · Mayo 2026</p>
+    <div class="rainbow-line"></div>
+  </div>
+
+</div>
+</body>
+</html>
