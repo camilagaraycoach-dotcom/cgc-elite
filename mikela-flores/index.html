@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe CGC ELITE — Mikela Flores Hernández</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #E8302A;
+    --orange: #F47B20;
+    --pink: #E5406A;
+    --purple: #8B4FA8;
+    --blue: #4A7FC1;
+    --dark: #1C1820;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F2F8;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .rainbow {
+    height: 6px;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+
+  .page { max-width: 760px; margin: 0 auto; padding: 80px 24px 80px; }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 20px;
+    padding: 48px 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 24px;
+    align-items: start;
+  }
+  .header::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .header-left { grid-column: 1; }
+  .header-photo-wrap {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    width: 140px;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    margin-right: 14px;
+  }
+  .header-photo-wrap img {
+    width: 140px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 14px;
+    border: 3px solid rgba(255,255,255,0.15);
+    display: block;
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .badge-programa {
+    font-size: 10px; font-weight: 800; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--white);
+    background: linear-gradient(to right, var(--purple), var(--blue));
+    padding: 6px 14px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-pais {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    border: 1.5px solid var(--orange);
+    padding: 6px 14px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-premium {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--pink);
+    border: 1.5px solid var(--pink);
+    padding: 6px 14px; border-radius: 4px;
+    display: inline-block;
+  }
+  .header h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(26px, 4.5vw, 42px);
+    line-height: 1.1; color: var(--white);
+    margin-bottom: 8px;
+  }
+  .header h1 .grad {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-sub {
+    font-size: 14px; color: rgba(255,255,255,0.55);
+    font-weight: 400; letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .header-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .meta-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 9px 16px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .meta-icon { font-size: 16px; }
+  .meta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.45); font-weight: 600; display: block; }
+  .meta-value { font-size: 13px; font-weight: 700; color: var(--white); display: block; }
+
+  /* ─── SECTION ─── */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.07);
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 800; letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 10px;
+    color: var(--purple);
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1.1; margin-bottom: 22px;
+    color: var(--dark);
+  }
+  .section-title .accent { color: var(--pink); }
+  .section p { font-size: 15px; line-height: 1.75; color: #444; }
+  .section p + p { margin-top: 14px; }
+
+  /* ─── FOTO GRIDS ─── */
+  .foto-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .foto-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .foto-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .foto-grid.cols-1 { grid-template-columns: 1fr; }
+  .foto-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+  .foto-caption {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: #999;
+    text-align: center; margin-top: 8px;
+  }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1A0B2E, #2D1654);
+    border-radius: 12px; padding: 24px 28px;
+    margin-top: 24px;
+  }
+  .highlight-box p { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; font-weight: 300; }
+  .highlight-box strong { font-weight: 800; color: var(--orange); }
+
+  /* ─── ITEMS ─── */
+  .item-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 18px;
+    background: rgba(139,79,168,0.06);
+    border-left: 5px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+  }
+  .item.red   { background: rgba(232,48,42,0.06);  border-left-color: var(--red); }
+  .item.orange{ background: rgba(244,123,32,0.07); border-left-color: var(--orange); }
+  .item.pink  { background: rgba(229,64,106,0.06); border-left-color: var(--pink); }
+  .item.blue  { background: rgba(74,127,193,0.07); border-left-color: var(--blue); }
+  .item.green { background: rgba(34,139,34,0.07);  border-left-color: #3DAA5C; }
+  .item-icon  { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
+  .item-text  { font-size: 14px; color: #333; font-weight: 600; line-height: 1.5; }
+  .item-text span { display: block; font-size: 13px; font-weight: 400; color: #666; margin-top: 3px; }
+
+  /* ─── INFORME SECTION ─── */
+  .informe-section {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.07);
+    overflow: hidden;
+  }
+  .informe-header {
+    padding: 24px 36px 20px;
+    border-bottom: 1px solid #F0EEF6;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .informe-num {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 52px; line-height: 1;
+    background: linear-gradient(to right, var(--purple), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    flex-shrink: 0;
+  }
+  .informe-header-info {}
+  .informe-tipo {
+    font-size: 11px; font-weight: 800; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--purple); margin-bottom: 4px;
+  }
+  .informe-titulo {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(20px, 3.5vw, 26px); color: var(--dark); line-height: 1.15;
+  }
+  .informe-titulo .accent { color: var(--pink); }
+  .informe-fecha {
+    margin-left: auto;
+    background: rgba(139,79,168,0.08);
+    border-radius: 8px; padding: 8px 16px;
+    font-size: 12px; font-weight: 700; color: var(--purple);
+    letter-spacing: 1px; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .informe-body { padding: 28px 36px 32px; }
+  .informe-body p { font-size: 15px; line-height: 1.75; color: #444; }
+  .informe-body p + p { margin-top: 12px; }
+
+  .informe-subtitle {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 17px; color: var(--dark); margin: 26px 0 10px;
+  }
+  .informe-subtitle.orange { color: var(--orange); }
+  .informe-subtitle.pink   { color: var(--pink); }
+  .informe-subtitle.blue   { color: var(--blue); }
+  .informe-subtitle.purple { color: var(--purple); }
+  .informe-subtitle.green  { color: #3DAA5C; }
+
+  .conclusion-box {
+    background: linear-gradient(135deg, #F8F6FF, #FFF0F8);
+    border-radius: 12px; padding: 20px 24px;
+    margin-top: 24px;
+    border-left: 5px solid var(--purple);
+  }
+  .conclusion-box p { font-size: 14px; line-height: 1.7; color: #444; }
+  .conclusion-box p + p { margin-top: 8px; }
+  .conclusion-box strong { color: var(--purple); font-weight: 700; }
+
+  /* ─── TAGS ─── */
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag { font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 5px 14px; border-radius: 99px; }
+  .tag.logro    { background: rgba(61,170,92,0.12);  color: #2A8048; }
+  .tag.trabajo  { background: rgba(244,123,32,0.12); color: #C06010; }
+  .tag.prioridad{ background: rgba(232,48,42,0.1);   color: #B02020; }
+
+  /* ─── OBJETIVO SECTION ─── */
+  .objetivo-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .objetivo-section::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to top, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .objetivo-section .section-eyebrow { color: #C89FE0; }
+  .objetivo-section .section-title { color: var(--white); }
+  .objetivo-section .section-title .accent {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .objetivo-section p { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.8); }
+
+  /* ─── CLASE SECTION ─── */
+  .clase-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .clase-section::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .clase-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+  .clase-card {
+    flex: 1; min-width: 110px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 18px 14px;
+    text-align: center;
+  }
+  .clase-card-icon { font-size: 26px; margin-bottom: 8px; }
+  .clase-card-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px; }
+  .clase-card-value { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 20px; color: var(--white); }
+  .clase-plan { display: flex; flex-direction: column; gap: 12px; }
+  .clase-plan-item { display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+  .clase-plan-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ─── COMPROMISO ─── */
+  .compromiso-wrap { margin-top: 20px; }
+  .compromiso-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .compromiso-label span { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .compromiso-label strong { font-size: 16px; font-weight: 900; color: var(--purple); }
+  .bar-bg { height: 12px; background: #EEE; border-radius: 99px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(to right, var(--purple), var(--pink), var(--orange)); width: 90%; }
+  .compromiso-nota { font-size: 13px; color: #888; margin-top: 10px; font-style: italic; }
+
+  /* ─── FOOTER ─── */
+  .footer { text-align: center; padding: 24px 0 8px; }
+  .footer p { font-size: 12px; color: #AAA; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+  .footer .rainbow-line { height: 4px; width: 80px; margin: 12px auto 0; background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue)); border-radius: 99px; }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page { margin: 14mm 12mm; size: A4; }
+    .rainbow { display: none; }
+    body { background: white; }
+    .page { padding: 0; max-width: 100%; }
+    .section, .objetivo-section, .clase-section, .informe-section,
+    .highlight-box, .item, .clase-card, .clase-plan, .conclusion-box,
+    .meta-item, .footer, .foto-grid { break-inside: avoid; page-break-inside: avoid; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .section, .objetivo-section, .clase-section, .informe-section { margin-bottom: 14px; }
+    .header { margin-bottom: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow"></div>
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="header">
+    <div class="header-left">
+      <div class="header-top">
+        <span class="badge-programa">CGC ELITE 1:1</span>
+        <span class="badge-pais">Perú</span>
+        <span class="badge-premium">Premium</span>
+      </div>
+      <h1><span class="grad">Mikela</span><br>Flores Hernández</h1>
+      <p class="header-sub">Reporte de progreso — Informes 1 al 3 · Marzo – Abril 2026</p>
+      <div class="header-meta">
+        <div class="meta-item">
+          <span class="meta-icon">🎂</span>
+          <div><span class="meta-label">Edad</span><span class="meta-value">10 años</span></div>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">📍</span>
+          <div><span class="meta-label">Ubicación</span><span class="meta-value">Jesús María, Lima</span></div>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">🏟️</span>
+          <div><span class="meta-label">Modalidad</span><span class="meta-value">Presencial</span></div>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">🤸</span>
+          <div><span class="meta-label">Disciplina</span><span class="meta-value">Gimnasia Artística</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="header-photo-wrap">
+      <img src="fotos/foto_p01_2.png" alt="Mikela Flores">
+    </div>
+  </div>
+
+  <!-- ══════════ PERFIL INICIAL ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Diagnóstico inicial</p>
+    <h2 class="section-title">Perfil del <span class="accent">atleta</span></h2>
+    <p>Mikela Flores Hernández, 10 años, gimnasta de artística con aproximadamente 2 años de experiencia. Actualmente entrena en su academia 3 veces por semana. Es una alumna motivada, con un objetivo competitivo claro y una buena disposición hacia el entrenamiento desde el primer día.</p>
+    <p>Su ingreso al programa CGC ELITE PREMIUM responde a un objetivo concreto: <strong>ingresar a la selección Nivel 1 de su academia en la evaluación de junio 2026</strong>. Llega con bases técnicas que requieren consolidación, especialmente en fuerza física y control corporal.</p>
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">🎯</span>
+        <div class="item-text">Objetivo declarado
+          <span>Ingresar a la selección Nivel 1 de su academia — evaluación en junio 2026.</span>
+        </div>
+      </div>
+      <div class="item green">
+        <span class="item-icon">✅</span>
+        <div class="item-text">Sin lesiones ni limitaciones médicas
+          <span>Puede trabajar todos los elementos técnicos sin restricciones.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">💪</span>
+        <div class="item-text">Nivel de compromiso: alto
+          <span>Tanto Mikela como su mamá (Rosa Hernández) muestran apertura para seguir indicaciones y trabajar de forma constante fuera de clase.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ OBJETIVO GENERAL ══════════ -->
+  <div class="objetivo-section">
+    <p class="section-eyebrow">Objetivo del proceso</p>
+    <h2 class="section-title">Objetivo <span class="accent">general</span></h2>
+    <p>Preparar a Mikela para su ingreso a la selección Nivel 1 de su academia, desarrollando una base sólida en flexibilidad, fuerza, técnica y control corporal que le permita cumplir con los requisitos evaluativos y comenzar su camino competitivo.</p>
+  </div>
+
+  <!-- ══════════ PAQUETE ══════════ -->
+  <div class="clase-section">
+    <p class="section-eyebrow" style="color:#C89FE0;">Plan adquirido</p>
+    <h2 class="section-title" style="color:var(--white);">CGC ELITE <span style="background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Premium</span></h2>
+    <div class="clase-grid">
+      <div class="clase-card">
+        <div class="clase-card-icon">📹</div>
+        <div class="clase-card-label">Clases en vivo</div>
+        <div class="clase-card-value">8</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🎥</div>
+        <div class="clase-card-label">Clases grabadas</div>
+        <div class="clase-card-value">4</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">📋</div>
+        <div class="clase-card-label">Informes</div>
+        <div class="clase-card-value">4</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">📅</div>
+        <div class="clase-card-label">Día en vivo</div>
+        <div class="clase-card-value">Viernes</div>
+      </div>
+    </div>
+    <div class="clase-plan">
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--purple),var(--blue));"></span>
+        <span>Clases 1:1 presenciales — viernes 2:00 p.m. (Lima, Perú)</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--orange),var(--pink));"></span>
+        <span>Clases grabadas — trabajo guiado en casa (Power Split y preparación física)</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--pink),var(--purple));"></span>
+        <span>Entrenamiento en academia 3 veces por semana (complementario)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ INFORME 1 ══════════ -->
+  <div class="informe-section">
+    <div class="informe-header">
+      <div class="informe-num">01</div>
+      <div class="informe-header-info">
+        <div class="informe-tipo">Informe · Sesión 1</div>
+        <div class="informe-titulo">Diagnóstico <span class="accent">+ Inicio</span></div>
+      </div>
+      <div class="informe-fecha">25 Mar 2026</div>
+    </div>
+    <div class="informe-body">
+      <p>En esta primera sesión se realizó una evaluación práctica para identificar el nivel actual de Mikela en fuerza, flexibilidad y técnica, con el objetivo de definir el enfoque de trabajo hacia su ingreso a la selección Nivel 1.</p>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p06_2.jpeg" alt="Sesión diagnóstico — parada de manos">
+        <img src="fotos/foto_p07_2.jpeg" alt="Preparación física — fuerza">
+      </div>
+      <p class="foto-caption">Sesión 1 · 25 Mar 2026</p>
+
+      <div class="informe-subtitle orange">Preparación física</div>
+      <div class="item-list">
+        <div class="item orange">
+          <span class="item-icon">⚠️</span>
+          <div class="item-text">Dificultad en ejercicios de core
+            <span>Planchas y control abdominal presentan limitación — se prioriza su desarrollo.</span>
+          </div>
+        </div>
+        <div class="item orange">
+          <span class="item-icon">⚠️</span>
+          <div class="item-text">Limitación en fuerza de brazos
+            <span>Push-ups con dificultad — base a fortalecer para soporte en parada de manos.</span>
+          </div>
+        </div>
+        <div class="item orange">
+          <span class="item-icon">⚠️</span>
+          <div class="item-text">Falta de fuerza en piernas
+            <span>Se evidenció en saltos — dificultad para subir al cubo al inicio de la sesión.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="informe-subtitle blue">Flexibilidad</div>
+      <div class="item-list">
+        <div class="item green">
+          <span class="item-icon">✅</span>
+          <div class="item-text">Buena flexibilidad de isquiotibiales
+            <span>Punto de fortaleza natural a mantener y aprovechar.</span>
+          </div>
+        </div>
+        <div class="item orange">
+          <span class="item-icon">📌</span>
+          <div class="item-text">Dificultad en split izquierdo
+            <span>Se corrigió la alineación durante la sesión — logró mejor ejecución inmediata. Buena capacidad de corrección técnica.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p08_2.jpeg" alt="Trabajo de flexibilidad — split">
+        <img src="fotos/foto_p08_3.jpeg" alt="Corrección de split izquierdo">
+      </div>
+      <div class="foto-grid cols-2" style="margin-top:10px;">
+        <img src="fotos/foto_p09_2.jpeg" alt="Flexibilidad — isquiotibiales">
+        <img src="fotos/foto_p09_3.jpeg" alt="Split con corrección">
+      </div>
+      <p class="foto-caption">Flexibilidad · Split y alineación</p>
+
+      <div class="informe-subtitle purple">Técnica acrobática</div>
+      <div class="item-list">
+        <div class="item">
+          <span class="item-icon">🔄</span>
+          <div class="item-text">Rodamiento adelante
+            <span>Se trabajó punta de pies y control en la ejecución.</span>
+          </div>
+        </div>
+        <div class="item orange">
+          <span class="item-icon">🔄</span>
+          <div class="item-text">Rodamiento atrás — dificultad en empuje de brazos
+            <span>Se realizaron progresiones con triángulo para mejorar la mecánica.</span>
+          </div>
+        </div>
+        <div class="item blue">
+          <span class="item-icon">🤸</span>
+          <div class="item-text">Parada de manos — buena alineación corporal
+            <span>Falta confianza para sostener sin apoyo. La base es correcta.</span>
+          </div>
+        </div>
+        <div class="item">
+          <span class="item-icon">🌉</span>
+          <div class="item-text">Puente (arañita)
+            <span>Lo ejecuta. Se corrigió activación de hombros y proyección de pecho. Logró corregirlo rápidamente durante la clase.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-1">
+        <img src="fotos/foto_p10_2.jpeg" alt="Trabajo de puente — arañita">
+      </div>
+      <p class="foto-caption">Puente · Corrección de activación y hombros</p>
+
+      <div class="conclusion-box">
+        <p>Mikela mostró <strong>muy buena actitud</strong> durante toda la sesión. A pesar del cansancio, se mantuvo constante, receptiva a las correcciones y con disposición para seguir intentando. No se rinde fácilmente — punto muy positivo para su proceso.</p>
+        <p>El enfoque en las siguientes sesiones estará dirigido a <strong>fortalecer la base física y consolidar los fundamentos técnicos</strong> para mejorar el rendimiento de forma segura.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ INFORME 2 ══════════ -->
+  <div class="informe-section">
+    <div class="informe-header">
+      <div class="informe-num">02</div>
+      <div class="informe-header-info">
+        <div class="informe-tipo">Informe · Sesión 2</div>
+        <div class="informe-titulo">Avance <span class="accent">intermedio</span></div>
+      </div>
+      <div class="informe-fecha">5 Abr 2026</div>
+    </div>
+    <div class="informe-body">
+      <p>En esta sesión se trabajó técnica de base, flexibilidad de espalda y control corporal, integrando ejercicios específicos para mejorar la ejecución en gimnasia: parada de manos, aspa de molino y round off.</p>
+
+      <div class="informe-subtitle purple">Parada de manos y alineación</div>
+      <div class="item-list">
+        <div class="item blue">
+          <span class="item-icon">🤸</span>
+          <div class="item-text">Revisión de parada en L y parada de manos
+            <span>Se corrigió un ajuste en la mano izquierda — esto permitió mejorar la base para el siguiente elemento técnico.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p14_2.png" alt="Parada de manos con asistencia">
+        <img src="fotos/foto_p14_3.png" alt="Parada de manos — alineación">
+      </div>
+      <p class="foto-caption">Parada de manos · Corrección de alineación</p>
+
+      <div class="informe-subtitle blue">Flexibilidad de espalda — Puente / Arco</div>
+      <div class="item-list">
+        <div class="item">
+          <span class="item-icon">🌉</span>
+          <div class="item-text">Objetivo: lograr ejecución con pies juntos
+            <span>Enfoque en apertura de pecho y activación correcta. Continúa progresando en la técnica, aplicando mejor las correcciones.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-1">
+        <img src="fotos/foto_p15_2.png" alt="Flexibilidad de espalda — puente con Camila">
+      </div>
+      <p class="foto-caption">Puente / Arco · Apertura de pecho y activación</p>
+
+      <div class="informe-subtitle orange">Técnica — Puntas de pie</div>
+      <p>Se trabajó la activación constante de las puntas de pie, no solo en posiciones estáticas, sino también durante el movimiento. Ejercicios específicos para fortalecer los dedos de los pies y generar mayor conciencia corporal.</p>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p16_2.png" alt="Puntas de pie — pierna elevada">
+        <img src="fotos/foto_p16_3.png" alt="Conciencia corporal — puntas">
+      </div>
+      <p class="foto-caption">Puntas de pie · Activación durante el movimiento</p>
+
+      <div class="informe-subtitle purple">Parada de manos — Refinamiento</div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p17_2.png" alt="Parada de manos — fase 2">
+        <img src="fotos/foto_p17_3.png" alt="Parada de manos — aspa de molino">
+      </div>
+      <p class="foto-caption">Parada de manos · Aspa de molino</p>
+
+      <div class="informe-subtitle pink">Progresión técnica — Round Off</div>
+      <div class="item-list">
+        <div class="item pink">
+          <span class="item-icon">⭐</span>
+          <div class="item-text">Inicio del round off
+            <span>Se practicó la primera fase utilizando la pared como apoyo. Buena respuesta al aprendizaje progresivo del elemento.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p18_2.png" alt="Round off — primera fase con pared">
+        <img src="fotos/foto_p18_3.png" alt="Round off — progresión">
+      </div>
+      <p class="foto-caption">Round Off · Primera progresión con pared</p>
+
+      <div class="tag-list">
+        <span class="tag logro">Parada de manos con mayor control</span>
+        <span class="tag logro">Puntas de pie más activas</span>
+        <span class="tag trabajo">Round off en progresión (fase 1)</span>
+        <span class="tag trabajo">Puente — objetivo pies juntos</span>
+      </div>
+
+      <div class="conclusion-box">
+        <p>Mikela continúa mostrando <strong>buena capacidad de adaptación y aprendizaje</strong>. Se observa avance en la conciencia técnica y en la ejecución de los ejercicios. El trabajo de splits se complementa con las clases virtuales de Power Split.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ INFORME 3 ══════════ -->
+  <div class="informe-section">
+    <div class="informe-header">
+      <div class="informe-num">03</div>
+      <div class="informe-header-info">
+        <div class="informe-tipo">Informe · Sesiones 3 y 4</div>
+        <div class="informe-titulo">Consolidación <span class="accent">técnica</span></div>
+      </div>
+      <div class="informe-fecha">9 Abr 2026</div>
+    </div>
+    <div class="informe-body">
+      <p>En estas sesiones se continuó el trabajo técnico enfocado en el round off (rondo), integrando preparación física, control corporal y mejora de líneas corporales.</p>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p20_2.png" alt="Trabajo de core — sesiones 3 y 4">
+        <img src="fotos/foto_p20_3.png" alt="Control corporal y fuerza">
+      </div>
+      <p class="foto-caption">Sesiones 3 y 4 · Consolidación técnica</p>
+
+      <div class="informe-subtitle pink">Progresión técnica — Round Off</div>
+      <div class="item-list">
+        <div class="item pink">
+          <span class="item-icon">⭐</span>
+          <div class="item-text">Avance significativo en round off
+            <span>Énfasis en estiramiento de piernas, uso correcto de puntas de pie y mejora de líneas corporales. Mejor comprensión del movimiento y mayor coordinación general.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-3">
+        <img src="fotos/foto_p21_2.png" alt="Round off — fase avanzada 1">
+        <img src="fotos/foto_p21_3.png" alt="Round off — fase avanzada 2">
+        <img src="fotos/foto_p21_4.png" alt="Round off — fase avanzada 3">
+      </div>
+      <p class="foto-caption">Round Off · Progresión avanzada — líneas y coordinación</p>
+
+      <div class="informe-subtitle orange">Preparación física</div>
+      <div class="item-list">
+        <div class="item orange">
+          <span class="item-icon">🔥</span>
+          <div class="item-text">Fuerza abdominal — prioridad actual
+            <span>Se reforzó constantemente. Aún se evidencia falta de fuerza en el abdomen — punto clave para mejorar técnica y estabilidad.</span>
+          </div>
+        </div>
+        <div class="item">
+          <span class="item-icon">💪</span>
+          <div class="item-text">Control corporal durante los movimientos
+            <span>Mejora progresiva en la estabilidad general al ejecutar los ejercicios.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p22_2.png" alt="Preparación física — control corporal">
+        <img src="fotos/foto_p22_3.png" alt="Fuerza de piernas y estabilidad">
+      </div>
+      <p class="foto-caption">Preparación física · Fuerza y control corporal</p>
+
+      <div class="informe-subtitle green">Saltos y coordinación — Logro destacado</div>
+      <div class="item-list">
+        <div class="item green">
+          <span class="item-icon">🏆</span>
+          <div class="item-text">Mejora significativa en saltos
+            <span>Actualmente logra subir al cubo con mayor seguridad — al inicio presentaba dificultad. Mayor coordinación en la ejecución de movimientos. Esto refleja avance en fuerza de piernas y confianza.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos/foto_p23_2.png" alt="Saltos — mejora en coordinación">
+        <img src="fotos/foto_p23_3.png" alt="Sube al cubo con seguridad">
+      </div>
+      <p class="foto-caption">Saltos y coordinación · Logro visible desde la clase 1</p>
+
+      <div class="tag-list">
+        <span class="tag logro">Round off en progresión avanzada</span>
+        <span class="tag logro">Saltos — sube al cubo con seguridad</span>
+        <span class="tag logro">Mayor coordinación general</span>
+        <span class="tag prioridad">Fuerza abdominal — prioridad</span>
+        <span class="tag trabajo">Líneas corporales — en refinamiento</span>
+      </div>
+
+      <div class="conclusion-box">
+        <p>Mikela ha mostrado <strong>progreso visible en coordinación, fuerza y ejecución técnica</strong>. Se evidencia una mejora en su seguridad al realizar los ejercicios, lo cual impacta positivamente en su desempeño general.</p>
+        <p>El enfoque se mantiene en: <strong>seguir desarrollando fuerza abdominal, consolidar técnica del round off</strong> y continuar reforzando líneas y control corporal hacia la evaluación de junio.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ RESUMEN FINAL ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Visión general</p>
+    <h2 class="section-title">Resumen de <span class="accent">progreso</span></h2>
+    <p>A lo largo de las primeras 4 sesiones, Mikela ha demostrado una evolución positiva y constante. Su actitud frente al entrenamiento es uno de sus mayores activos: recibe correcciones bien, se esfuerza hasta el final y no se rinde cuando algo le cuesta.</p>
+
+    <div class="item-list">
+      <div class="item green">
+        <span class="item-icon">✅</span>
+        <div class="item-text">Logros confirmados
+          <span>Mejora en saltos y fuerza de piernas · Round off en progresión activa · Mejor conciencia en puntas de pie · Corrección técnica rápida en parada de manos y puente.</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">🎯</span>
+        <div class="item-text">Áreas en desarrollo
+          <span>Fuerza abdominal (prioridad principal) · Round off completo sin apoyo · Split izquierdo y middle split · Líneas corporales en movimiento.</span>
+        </div>
+      </div>
+      <div class="item blue">
+        <span class="item-icon">📅</span>
+        <div class="item-text">Próximo hito
+          <span>Evaluación selección Nivel 1 — junio 2026. El proceso avanza en la dirección correcta.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="compromiso-wrap">
+      <div class="compromiso-label">
+        <span>Nivel de compromiso</span>
+        <strong>ALTO</strong>
+      </div>
+      <div class="bar-bg"><div class="bar-fill"></div></div>
+      <p class="compromiso-nota">Mikela y su mamá Rosa demuestran constancia y apertura para trabajar dentro y fuera de cada sesión.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informes 1–3 · Marzo–Abril 2026</p>
+    <div class="rainbow-line"></div>
+  </div>
+
+</div>
+</body>
+</html>
