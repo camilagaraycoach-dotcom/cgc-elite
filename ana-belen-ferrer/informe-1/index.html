@@ -152,34 +152,31 @@
 
   /* GALERÍA */
   .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     margin-top: 24px;
   }
-  .gallery-item { border-radius: 12px; overflow: hidden; position: relative; }
+  .gallery-item { }
   .gallery-item img {
     width: 100%; height: auto;
     display: block;
-    border-radius: 12px 12px 0 0;
-  }
-  .gallery-item.featured {
-    grid-column: 1 / -1;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.12);
   }
   .gallery-item.featured img {
-    height: auto;
+    border-radius: 14px;
   }
   .gallery-caption {
-    background: var(--dark); padding: 12px 16px;
-    border-radius: 0 0 12px 12px;
+    padding: 10px 4px 0;
   }
   .gallery-caption-tag {
     font-size: 10px; font-weight: 800; letter-spacing: 3px;
     text-transform: uppercase; color: var(--orange);
-    display: block; margin-bottom: 4px;
+    display: block; margin-bottom: 3px;
   }
   .gallery-caption-text {
-    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4;
+    font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.4;
   }
 
   /* GRAN LOGRO SECTION */
