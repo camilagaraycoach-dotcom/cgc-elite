@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe 1 — Regina Alcalá Quezada | CGC ELITE</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #E8302A;
+    --orange: #F47B20;
+    --pink: #E5406A;
+    --purple: #8B4FA8;
+    --blue: #4A7FC1;
+    --green: #2ECC71;
+    --dark: #1C1820;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F2F8;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+  .rainbow {
+    height: 6px;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 80px 24px 80px; }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 20px;
+    padding: 48px 56px 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .badge-programa {
+    font-size: 11px; font-weight: 800; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--white);
+    background: linear-gradient(to right, var(--purple), var(--blue));
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-informe {
+    font-size: 11px; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    border: 1.5px solid var(--orange);
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-fecha {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+    background: rgba(255,255,255,0.07);
+  }
+  .header h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.1; color: var(--white);
+    margin-bottom: 8px;
+  }
+  .header h1 .grad {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-sub {
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    font-weight: 400; letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .header-meta {
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+  .meta-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 10px 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .meta-icon { font-size: 18px; }
+  .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.45); font-weight: 600; display: block; }
+  .meta-value { font-size: 14px; font-weight: 700; color: var(--white); display: block; }
+
+  /* ─── SECCIÓN GENERAL ─── */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.07);
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 800; letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 10px;
+    color: var(--purple);
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1.1; margin-bottom: 22px;
+    color: var(--dark);
+  }
+  .section-title .accent { color: var(--pink); }
+  .section p {
+    font-size: 15px; line-height: 1.75; color: #444;
+    font-weight: 400;
+  }
+  .section p + p { margin-top: 14px; }
+
+  /* ─── LISTA DE ITEMS ─── */
+  .item-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px;
+    background: rgba(139,79,168,0.06);
+    border-left: 5px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+  }
+  .item.red   { background: rgba(232,48,42,0.06);  border-left-color: var(--red); }
+  .item.orange{ background: rgba(244,123,32,0.07); border-left-color: var(--orange); }
+  .item.pink  { background: rgba(229,64,106,0.06); border-left-color: var(--pink); }
+  .item.blue  { background: rgba(74,127,193,0.07); border-left-color: var(--blue); }
+  .item.green { background: rgba(46,204,113,0.07); border-left-color: var(--green); }
+  .item-icon  { font-size: 22px; flex-shrink: 0; line-height: 1.4; }
+  .item-text  { font-size: 15px; color: #333; font-weight: 600; line-height: 1.5; }
+  .item-text span { display: block; font-size: 13px; font-weight: 400; color: #666; margin-top: 3px; }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1A0B2E, #2D1654);
+    border-radius: 12px; padding: 28px 28px;
+    margin-top: 24px;
+  }
+  .highlight-box p {
+    font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; font-weight: 300;
+  }
+  .highlight-box strong {
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  /* ─── DIAGNÓSTICO GRID ─── */
+  .diag-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .diag-card {
+    flex: 1; min-width: 150px;
+    border-radius: 12px; padding: 20px 18px;
+  }
+  .diag-card.bien { background: linear-gradient(135deg, #E8F8F1, #D5F4E6); }
+  .diag-card.trabajo { background: linear-gradient(135deg, #FFF4E8, #FFE8CC); }
+  .diag-card.foco { background: linear-gradient(135deg, #F3EAFF, #EDD9FF); }
+  .diag-card-label {
+    font-size: 10px; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .diag-card.bien .diag-card-label { color: #27AE60; }
+  .diag-card.trabajo .diag-card-label { color: #E67E22; }
+  .diag-card.foco .diag-card-label { color: var(--purple); }
+  .diag-card-value {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 17px; line-height: 1.2;
+  }
+  .diag-card.bien .diag-card-value { color: #1E8449; }
+  .diag-card.trabajo .diag-card-value { color: #D35400; }
+  .diag-card.foco .diag-card-value { color: #6C3483; }
+
+  /* ─── PRIORIDADES ─── */
+  .prioridad-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+  .prioridad-item {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 18px 20px;
+    background: #F9F7FF;
+    border-radius: 12px;
+    border: 1.5px solid rgba(139,79,168,0.12);
+  }
+  .prioridad-num {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 26px; color: var(--purple);
+    line-height: 1; flex-shrink: 0; min-width: 28px;
+    opacity: 0.35;
+  }
+  .prioridad-title {
+    font-size: 15px; font-weight: 700; color: var(--dark);
+    margin-bottom: 5px;
+  }
+  .prioridad-desc {
+    font-size: 13px; color: #666; line-height: 1.6;
+  }
+
+  /* ─── SECCIÓN LOGRO ─── */
+  .logro-section {
+    background: linear-gradient(160deg, #0B2E1A 0%, #164D2D 60%, #0D2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(46,204,113,0.2);
+    position: relative; overflow: hidden;
+  }
+  .logro-section::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--green), var(--blue), var(--purple));
+  }
+  .logro-section .section-eyebrow { color: #7EDCA0; }
+  .logro-section .section-title { color: var(--white); }
+  .logro-section .section-title .accent {
+    background: linear-gradient(to right, var(--green), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .logro-section p {
+    font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.8;
+  }
+  .logro-quote {
+    background: rgba(255,255,255,0.07);
+    border-left: 4px solid var(--green);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 22px;
+    margin-top: 24px;
+  }
+  .logro-quote p {
+    font-size: 16px; color: rgba(255,255,255,0.9);
+    font-weight: 500; line-height: 1.7; font-style: italic;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 24px 0 8px;
+  }
+  .footer p {
+    font-size: 12px; color: #AAA; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .footer .rainbow-line {
+    height: 4px; width: 80px; margin: 12px auto 0;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    border-radius: 99px;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page { margin: 14mm 12mm; size: A4; }
+    .rainbow { display: none; }
+    body { background: white; }
+    .page { padding: 0; max-width: 100%; }
+    .section, .logro-section, .highlight-box, .item,
+    .diag-card, .prioridad-item, .footer {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .section, .logro-section { margin-bottom: 14px; }
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow"></div>
+
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge-programa">CGC ELITE 1:1</span>
+      <span class="badge-informe">Informe 1</span>
+      <span class="badge-fecha">7 de junio · 2026</span>
+    </div>
+    <h1><span class="grad">Regina</span><br>Alcalá Quezada</h1>
+    <p class="header-sub">Primera clase en vivo — Puntas de pie y flexibilidad izquierda</p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-icon">📅</span>
+        <div>
+          <span class="meta-label">Clase</span>
+          <span class="meta-value">Nº 1 — Domingo</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📍</span>
+        <div>
+          <span class="meta-label">Ubicación</span>
+          <span class="meta-value">México · Virtual</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💻</span>
+        <div>
+          <span class="meta-label">Modalidad</span>
+          <span class="meta-value">Virtual</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">✅</span>
+        <div>
+          <span class="meta-label">Estado</span>
+          <span class="meta-value">Completada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ RESUMEN DE LA CLASE ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Primera sesión en vivo</p>
+    <h2 class="section-title">Resumen de la <span class="accent">clase</span></h2>
+    <p>La primera clase en vivo fue una sesión de diagnóstico activo con trabajo técnico real desde el primer momento. Se estructuró en tres bloques: entrada en calor con fortalecimiento y evaluación de movilidad inicial, trabajo de equilibrio y conciencia de puntas con bloques y ligas, y bloque de flexibilidad de isquiotibiales con énfasis en la pierna izquierda.</p>
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">🔥</span>
+        <div class="item-text">Entrada en calor con fortalecimiento
+          <span>Calentamiento activo orientado a preparar la musculatura del pie, tobillo y pierna. Durante esta etapa se observó el nivel de flexibilidad inicial y la coordinación general de Regina.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">🩰</span>
+        <div class="item-text">Trabajo de puntas: bloques, ligas y medias
+          <span>Con bloques de yoga y ligas para trabajar el equilibrio, Regina realizó series de elevación en puntas usando medias como herramienta de activación. El objetivo: agarrar la tela con los dedos del pie para estimular la musculatura intrínseca del pie y la conexión tobillo-arco.</span>
+        </div>
+      </div>
+      <div class="item pink">
+        <span class="item-icon">🦵</span>
+        <div class="item-text">Flexibilidad de isquiotibiales — lado izquierdo
+          <span>Trabajo con ligas y ejercicios de suples para abordar la tensión isquiotibial que limita la apertura del split izquierdo. Duración de mantención: 5 a 10 segundos por posición (apropiado para primera clase).</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ DIAGNÓSTICO OBSERVADO ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Evaluación de la primera clase</p>
+    <h2 class="section-title">Diagnóstico <span class="accent">observado</span></h2>
+    <p>La primera clase permitió confirmar y afinar lo que el diagnóstico inicial ya había anticipado. Regina tiene una buena base activa y mucho potencial técnico, con diferencias claras entre su lado derecho e izquierdo que marcan la hoja de ruta del proceso.</p>
+    <div class="diag-grid">
+      <div class="diag-card bien">
+        <div class="diag-card-label">Fortaleza</div>
+        <div class="diag-card-value">Pierna derecha</div>
+      </div>
+      <div class="diag-card trabajo">
+        <div class="diag-card-label">En proceso</div>
+        <div class="diag-card-value">Isquiotibial izquierdo</div>
+      </div>
+      <div class="diag-card foco">
+        <div class="diag-card-label">Foco técnico</div>
+        <div class="diag-card-value">Puntas · Rodilla izquierda</div>
+      </div>
+    </div>
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">✅</span>
+        <div class="item-text">Pierna derecha: muy bien
+          <span>La apertura y el trabajo de flexibilidad con la pierna derecha está funcionando correctamente. Buen rango de movimiento, sin tensión excesiva ni compensaciones visibles.</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">🔍</span>
+        <div class="item-text">Isquiotibial izquierdo: el factor limitante del split
+          <span>El isquiotibial izquierdo está significativamente más tenso que el derecho. Esto genera un efecto en cadena: cuando Regina patea con la pierna izquierda hacia adelante, la rodilla comienza a doblarse — no por falta de control técnico, sino porque la flexibilidad muscular no le da el rango completo todavía.</span>
+        </div>
+      </div>
+      <div class="item pink">
+        <span class="item-icon">🩰</span>
+        <div class="item-text">Puntas: la conexión dedos-arco es el trabajo clave
+          <span>El ejercicio con medias le costó en un inicio — activar la musculatura intrínseca del pie no es algo que se haga naturalmente con frecuencia. Sin embargo, Regina pudo realizar varias repeticiones con éxito. La base está ahí; hay que seguir construyéndola.</span>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p>La rodilla que se dobla al patear con la pierna izquierda <strong>no es un problema técnico: es un problema de flexibilidad</strong>. Regina sabe cómo estirar la rodilla — su cuerpo simplemente no le da el rango aún. Con trabajo progresivo en el isquiotibial izquierdo, esa rodilla se estirará sola.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ LOGRO DE LA CLASE ══════════ -->
+  <div class="logro-section">
+    <p class="section-eyebrow">Hito de la sesión</p>
+    <h2 class="section-title">El split izquierdo <span class="accent">bajó más</span></h2>
+    <p>El logro más significativo de esta primera clase fue la mejora observable en el split izquierdo. Trabajando con Cambré, Regina logró bajar más en su apertura izquierda que en la posición de partida inicial — y lo más importante: se mantuvo en la posición con esfuerzo y concentración.</p>
+    <div class="logro-quote">
+      <p>Regina se forzó por quedarse en la posición. Eso es exactamente lo que necesita este proceso: no solo llegar, sino sostener. En la primera clase ya lo hizo.</p>
+    </div>
+    <p style="margin-top: 20px;">Las mantenciones de 5 a 10 segundos son el punto de partida ideal para una primera clase. El objetivo progresivo es llegar a <strong style="color: #7EDCA0;">30 segundos de mantención</strong> — una meta alcanzable con constancia semana a semana.</p>
+  </div>
+
+  <!-- ══════════ PRIORIDADES TÉCNICAS ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Plan de trabajo</p>
+    <h2 class="section-title">Prioridades <span class="accent">técnicas</span></h2>
+    <p>Con base en lo observado en esta primera sesión, las siguientes son las prioridades técnicas que guiarán las próximas clases:</p>
+    <div class="prioridad-list">
+      <div class="prioridad-item">
+        <div class="prioridad-num">1</div>
+        <div>
+          <div class="prioridad-title">Flexibilidad isquiotibial izquierdo</div>
+          <div class="prioridad-desc">Es la raíz del desequilibrio entre ambos lados. Trabajo con ligas, suples y elongación progresiva con mantenciones crecientes. El objetivo a corto plazo: que la rodilla izquierda pueda estirarse completamente al patear, sin compensar.</div>
+        </div>
+      </div>
+      <div class="prioridad-item">
+        <div class="prioridad-num">2</div>
+        <div>
+          <div class="prioridad-title">Activación de la musculatura intrínseca del pie</div>
+          <div class="prioridad-desc">El ejercicio de agarrar la media con los dedos del pie seguirá siendo parte del trabajo de puntas. Con repetición constante, la conexión entre dedos, arco y tobillo se vuelve más natural y potente, mejorando la calidad de la punta en barra y en suelo.</div>
+        </div>
+      </div>
+      <div class="prioridad-item">
+        <div class="prioridad-num">3</div>
+        <div>
+          <div class="prioridad-title">Aumento progresivo de mantención en split izquierdo</div>
+          <div class="prioridad-desc">De 5–10 segundos actuales a 30 segundos de mantención como meta de proceso. Cada clase se trabajará la tolerancia al estiramiento de forma progresiva, sin forzar ni generar compensaciones.</div>
+        </div>
+      </div>
+      <div class="prioridad-item">
+        <div class="prioridad-num">4</div>
+        <div>
+          <div class="prioridad-title">Equilibrio y trabajo de puntas con apoyo</div>
+          <div class="prioridad-desc">El uso de bloques y ligas para trabajar el equilibrio en puntas continuará evolucionando. En próximas clases se irá reduciendo el apoyo externo a medida que el control postural y la fuerza del pie mejoren.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informe 1 · Junio 2026</p>
+    <div class="rainbow-line"></div>
+  </div>
+
+</div>
+</body>
+</html>
