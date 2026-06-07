@@ -94,14 +94,14 @@
   .inline-gallery.cols3 { grid-template-columns: repeat(3,1fr); }
   .inline-gallery.cols2 { grid-template-columns: repeat(2,1fr); }
   .inline-gallery.cols4 { grid-template-columns: repeat(4,1fr); }
-  .inline-photo { border-radius:10px;overflow:hidden;aspect-ratio:3/4;cursor:pointer;position:relative; }
-  .inline-photo img { width:100%;height:100%;object-fit:cover;transition:transform 0.2s ease;display:block; }
+  .inline-photo { border-radius:10px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;position:relative; }
+  .inline-photo img { width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform 0.2s ease;display:block; }
   .inline-photo:hover img { transform:scale(1.04); }
 
   /* Split fotos — más grandes, landscape */
   .split-gallery { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;margin-bottom:4px; }
-  .split-photo { border-radius:12px;overflow:hidden;aspect-ratio:3/4;cursor:pointer; }
-  .split-photo img { width:100%;height:100%;object-fit:cover;transition:transform 0.2s ease;display:block; }
+  .split-photo { border-radius:12px;overflow:hidden;aspect-ratio:4/3;cursor:pointer; }
+  .split-photo img { width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform 0.2s ease;display:block; }
   .split-photo:hover img { transform:scale(1.03); }
 
   /* LIGHTBOX */
@@ -145,7 +145,7 @@
   .comp-col .inline-photo { aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; cursor: pointer; }
   .comp-col.derecha .inline-photo { border: 2px solid rgba(46,204,113,0.35); }
   .comp-col.izquierda .inline-photo { border: 2px solid rgba(244,123,32,0.35); }
-  .comp-col .inline-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.2s; }
+  .comp-col .inline-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform 0.2s; }
   .comp-col .inline-photo:hover img { transform: scale(1.04); }
   @media print { .comp-row { break-inside: avoid; } }
 
@@ -190,11 +190,11 @@
     .inline-gallery.cols3 { grid-template-columns: repeat(2, 1fr); }
     .inline-gallery.cols4 { grid-template-columns: repeat(2, 1fr); }
     .inline-gallery { gap: 6px; }
-    .inline-photo { aspect-ratio: 3/4; border-radius: 8px; }
+    .inline-photo { aspect-ratio: 4/3; border-radius: 8px; }
 
     .comp-row { grid-template-columns: 1fr 1fr; gap: 8px; }
     .comp-label { font-size: 9px; letter-spacing: 1px; padding: 5px 8px; }
-    .comp-col .inline-photo { aspect-ratio: 3/4; }
+    .comp-col .inline-photo { aspect-ratio: 4/3; }
 
     .split-gallery { grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .split-photo { border-radius: 8px; }
