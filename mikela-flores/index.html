@@ -325,12 +325,134 @@
   .footer p { font-size: 12px; color: #AAA; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
   .footer .rainbow-line { height: 4px; width: 80px; margin: 12px auto 0; background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue)); border-radius: 99px; }
 
+  /* ─── SCROLL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.18s; }
+  .reveal-delay-3 { transition-delay: 0.26s; }
+  .reveal-delay-4 { transition-delay: 0.34s; }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 28px;
+    opacity: 0.5;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2.5px solid rgba(255,255,255,0.5);
+    border-bottom: 2.5px solid rgba(255,255,255,0.5);
+    transform: rotate(45deg);
+    animation: bounce-arrow 1.4s infinite;
+  }
+  @keyframes bounce-arrow {
+    0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+    50% { transform: rotate(45deg) translateY(5px); opacity: 1; }
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .page { padding: 64px 14px 60px; }
+
+    /* Header — apila foto arriba */
+    .header {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 22px 26px;
+      gap: 20px;
+    }
+    .header-photo-wrap {
+      grid-column: unset;
+      grid-row: unset;
+      width: 100%;
+      margin-right: 0;
+      justify-content: center;
+    }
+    .header-photo-wrap img {
+      width: 120px;
+      height: 170px;
+    }
+    .header h1 { font-size: 32px; }
+    .header-top { gap: 8px; }
+    .badge-programa, .badge-pais, .badge-premium {
+      font-size: 9px;
+      padding: 5px 10px;
+    }
+    .header-meta { gap: 8px; }
+    .meta-item { padding: 8px 12px; gap: 7px; }
+    .meta-value { font-size: 12px; }
+
+    /* Sections */
+    .section { padding: 24px 18px; }
+    .section-title { font-size: 22px; }
+    .objetivo-section, .clase-section { padding: 28px 18px; }
+
+    /* Informe sections */
+    .informe-header { padding: 18px 18px 14px; gap: 12px; flex-wrap: wrap; }
+    .informe-num { font-size: 38px; }
+    .informe-titulo { font-size: 18px; }
+    .informe-fecha {
+      margin-left: 0;
+      width: 100%;
+      text-align: center;
+    }
+    .informe-body { padding: 20px 18px 24px; }
+
+    /* Clase grid — 2 columnas */
+    .clase-grid { gap: 8px; }
+    .clase-card { min-width: 80px; padding: 14px 10px; }
+    .clase-card-value { font-size: 17px; }
+
+    /* Foto grids */
+    .foto-grid.cols-3 { grid-template-columns: 1fr 1fr; }
+    .foto-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+
+    /* Items */
+    .item { padding: 12px 14px; gap: 10px; }
+    .item-icon { font-size: 18px; }
+    .item-text { font-size: 13px; }
+
+    /* Tags */
+    .tag { font-size: 11px; padding: 4px 11px; }
+
+    /* Conclusion */
+    .conclusion-box { padding: 16px 18px; }
+
+    /* Scroll hint — solo en header, ocultar en desktop */
+    .scroll-hint { display: flex; }
+  }
+
+  @media (min-width: 601px) {
+    .scroll-hint { display: none; }
+  }
+
   /* ─── PRINT ─── */
   @media print {
     @page { margin: 14mm 12mm; size: A4; }
-    .rainbow { display: none; }
+    .rainbow, .scroll-hint { display: none; }
     body { background: white; }
     .page { padding: 0; max-width: 100%; }
+    .reveal { opacity: 1 !important; transform: none !important; }
     .section, .objetivo-section, .clase-section, .informe-section,
     .highlight-box, .item, .clase-card, .clase-plan, .conclusion-box,
     .meta-item, .footer, .foto-grid { break-inside: avoid; page-break-inside: avoid; }
@@ -354,7 +476,7 @@
         <span class="badge-premium">Premium</span>
       </div>
       <h1><span class="grad">Mikela</span><br>Flores Hernández</h1>
-      <p class="header-sub">Reporte de progreso — Informes 1 al 3 · Marzo – Abril 2026</p>
+      <p class="header-sub">Reporte de progreso — Informes 1 al 4 · Marzo – Mayo 2026</p>
       <div class="header-meta">
         <div class="meta-item">
           <span class="meta-icon">🎂</span>
@@ -377,19 +499,23 @@
     <div class="header-photo-wrap">
       <img src="fotos/foto_p01_2.png" alt="Mikela Flores">
     </div>
+    <div class="scroll-hint">
+      <span>Desliza</span>
+      <div class="scroll-arrow"></div>
+    </div>
   </div>
 
   <!-- ══════════ PERFIL INICIAL ══════════ -->
-  <div class="section">
+  <div class="section reveal">
     <p class="section-eyebrow">Diagnóstico inicial</p>
     <h2 class="section-title">Perfil del <span class="accent">atleta</span></h2>
     <p>Mikela Flores Hernández, 10 años, gimnasta de artística con aproximadamente 2 años de experiencia. Actualmente entrena en su academia 3 veces por semana. Es una alumna motivada, con un objetivo competitivo claro y una buena disposición hacia el entrenamiento desde el primer día.</p>
-    <p>Su ingreso al programa CGC ELITE PREMIUM responde a un objetivo concreto: <strong>ingresar a la selección Nivel 1 de su academia en la evaluación de junio 2026</strong>. Llega con bases técnicas que requieren consolidación, especialmente en fuerza física y control corporal.</p>
+    <p>Su ingreso al programa CGC ELITE PREMIUM responde a un objetivo concreto: <strong>dar el mejor performance posible en la Copa de las Américas, competencia internacional que se realizará en Perú</strong>. Llega con bases técnicas que requieren consolidación, especialmente en fuerza física y control corporal.</p>
     <div class="item-list">
       <div class="item blue">
         <span class="item-icon">🎯</span>
         <div class="item-text">Objetivo declarado
-          <span>Ingresar a la selección Nivel 1 de su academia — evaluación en junio 2026.</span>
+          <span>Dar su mejor performance en la Copa de las Américas — competencia internacional de gimnasia artística en Perú.</span>
         </div>
       </div>
       <div class="item green">
@@ -408,14 +534,14 @@
   </div>
 
   <!-- ══════════ OBJETIVO GENERAL ══════════ -->
-  <div class="objetivo-section">
+  <div class="objetivo-section reveal">
     <p class="section-eyebrow">Objetivo del proceso</p>
     <h2 class="section-title">Objetivo <span class="accent">general</span></h2>
-    <p>Preparar a Mikela para su ingreso a la selección Nivel 1 de su academia, desarrollando una base sólida en flexibilidad, fuerza, técnica y control corporal que le permita cumplir con los requisitos evaluativos y comenzar su camino competitivo.</p>
+    <p>Preparar a Mikela para dar su mejor performance en la <strong>Copa de las Américas</strong> — competencia internacional de gimnasia artística que se realizará en Perú — desarrollando una base sólida en flexibilidad, fuerza, técnica y control corporal que le permita brillar en su debut competitivo internacional.</p>
   </div>
 
   <!-- ══════════ PAQUETE ══════════ -->
-  <div class="clase-section">
+  <div class="clase-section reveal">
     <p class="section-eyebrow" style="color:#C89FE0;">Plan adquirido</p>
     <h2 class="section-title" style="color:var(--white);">CGC ELITE <span style="background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Premium</span></h2>
     <div class="clase-grid">
@@ -457,7 +583,7 @@
   </div>
 
   <!-- ══════════ INFORME 1 ══════════ -->
-  <div class="informe-section">
+  <div class="informe-section reveal">
     <div class="informe-header">
       <div class="informe-num">01</div>
       <div class="informe-header-info">
@@ -558,13 +684,13 @@
 
       <div class="conclusion-box">
         <p>Mikela mostró <strong>muy buena actitud</strong> durante toda la sesión. A pesar del cansancio, se mantuvo constante, receptiva a las correcciones y con disposición para seguir intentando. No se rinde fácilmente — punto muy positivo para su proceso.</p>
-        <p>El enfoque en las siguientes sesiones estará dirigido a <strong>fortalecer la base física y consolidar los fundamentos técnicos</strong> para mejorar el rendimiento de forma segura.</p>
+        <p>El enfoque en las siguientes sesiones estará dirigido a <strong>fortalecer la base física y consolidar los fundamentos técnicos</strong> para que Mikela llegue a la Copa de las Américas con el mayor nivel posible.</p>
       </div>
     </div>
   </div>
 
   <!-- ══════════ INFORME 2 ══════════ -->
-  <div class="informe-section">
+  <div class="informe-section reveal">
     <div class="informe-header">
       <div class="informe-num">02</div>
       <div class="informe-header-info">
@@ -654,7 +780,7 @@
   </div>
 
   <!-- ══════════ INFORME 3 ══════════ -->
-  <div class="informe-section">
+  <div class="informe-section reveal">
     <div class="informe-header">
       <div class="informe-num">03</div>
       <div class="informe-header-info">
@@ -737,34 +863,158 @@
 
       <div class="conclusion-box">
         <p>Mikela ha mostrado <strong>progreso visible en coordinación, fuerza y ejecución técnica</strong>. Se evidencia una mejora en su seguridad al realizar los ejercicios, lo cual impacta positivamente en su desempeño general.</p>
-        <p>El enfoque se mantiene en: <strong>seguir desarrollando fuerza abdominal, consolidar técnica del round off</strong> y continuar reforzando líneas y control corporal hacia la evaluación de junio.</p>
+        <p>El enfoque se mantiene en: <strong>seguir desarrollando fuerza abdominal, consolidar técnica del round off</strong> y continuar reforzando líneas y control corporal de cara a la Copa de las Américas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ INFORME 4 ══════════ -->
+  <div class="informe-section reveal">
+    <div class="informe-header">
+      <div class="informe-num">04</div>
+      <div class="informe-header-info">
+        <div class="informe-tipo">Informe · Sesiones 7 y 8</div>
+        <div class="informe-titulo">Flexibilidad y <span class="accent">resistencia</span></div>
+      </div>
+      <div class="informe-fecha">26 – 28 May 2026</div>
+    </div>
+    <div class="informe-body">
+      <p>En estas sesiones el foco estuvo en la <strong>recuperación y profundización de la flexibilidad</strong> — piernas, apertura y espalda — trabajando también un aspecto clave para la formación atlética de Mikela: aprender a <strong>sostener la incomodidad del estiramiento</strong> sin ceder ni evitarlo.</p>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos 2/DSC02067.JPG" alt="Extensión de pierna alta — arabesque asistido">
+        <img src="fotos 2/DSC02068.JPG" alt="Trabajo de extensión con asistencia">
+      </div>
+      <p class="foto-caption">Sesiones 7 y 8 · 26–28 Mayo 2026</p>
+
+      <div class="informe-subtitle purple">Flexibilidad de piernas — Extensiones altas</div>
+      <div class="item-list">
+        <div class="item blue">
+          <span class="item-icon">🦵</span>
+          <div class="item-text">Trabajo en barra y con asistencia manual
+            <span>Se trabajaron extensiones altas de pierna, arabesque y leg scale con apoyo progresivo. Mejora en la altura y estabilidad de la extensión.</span>
+          </div>
+        </div>
+        <div class="item">
+          <span class="item-icon">📦</span>
+          <div class="item-text">Uso de bloque de yoga como herramienta
+            <span>Trabajo con apoyo del bloque para aumentar el rango de movimiento de forma controlada, sin comprometer la alineación.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-3">
+        <img src="fotos 2/DSC02078.JPG" alt="Extensión en barra — flexibilidad">
+        <img src="fotos 2/DSC02081.JPG" alt="Trabajo con bloque de yoga">
+        <img src="fotos 2/DSC02084.JPG" alt="Extensión asistida con bloque">
+      </div>
+      <p class="foto-caption">Flexibilidad de piernas · Barra y bloque de yoga</p>
+
+      <div class="informe-subtitle orange">Apertura — Middle Split y Straddle</div>
+      <div class="item-list">
+        <div class="item orange">
+          <span class="item-icon">🔓</span>
+          <div class="item-text">Split en superficie elevada
+            <span>Se trabajó el straddle sobre superficie elevada para aumentar la profundidad de la apertura. Mayor rango logrado con respiración consciente.</span>
+          </div>
+        </div>
+        <div class="item pink">
+          <span class="item-icon">🤝</span>
+          <div class="item-text">Estiramiento de cadera asistido
+            <span>Trabajo de carga progresiva en flexores de cadera — Mikela aprendió a ceder en lugar de contraer ante la incomodidad.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos 2/DSC02094.JPG" alt="Estiramiento de cadera asistido">
+        <img src="fotos 2/DSC02138.JPG" alt="Straddle en superficie elevada">
+      </div>
+      <p class="foto-caption">Apertura · Carga progresiva y straddle elevado</p>
+
+      <div class="informe-subtitle blue">Flexibilidad de espalda</div>
+      <div class="item-list">
+        <div class="item blue">
+          <span class="item-icon">🌉</span>
+          <div class="item-text">Bow pose — arco completo
+            <span>Trabajo de apertura de pecho y columna desde el piso. Buena respuesta al trabajo de flexibilidad dorsal.</span>
+          </div>
+        </div>
+        <div class="item pink">
+          <span class="item-icon">🔄</span>
+          <div class="item-text">Progresión de back walkover — trabajo con barril
+            <span>Uso del barril como herramienta de progresión para iniciar el back walkover. Buena predisposición ante un elemento nuevo y desafiante.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos 2/DSC02090.JPG" alt="Bow pose — flexibilidad de espalda">
+        <img src="fotos 2/DSC02099.JPG" alt="Progresión de back walkover con barril">
+      </div>
+      <p class="foto-caption">Flexibilidad de espalda · Bow pose y back walkover</p>
+
+      <div class="informe-subtitle green">Trabajo mental — Resistencia al estiramiento</div>
+      <div class="item-list">
+        <div class="item green">
+          <span class="item-icon">🧠</span>
+          <div class="item-text">Aprender a sostener la incomodidad
+            <span>Este fue uno de los enfoques centrales de las sesiones. Mikela trabajó en reconocer la diferencia entre incomodidad productiva y dolor, y en no ceder ante el impulso de salir del estiramiento antes de tiempo.</span>
+          </div>
+        </div>
+        <div class="item blue">
+          <span class="item-icon">💪</span>
+          <div class="item-text">Respuesta positiva al desafío mental
+            <span>Se observó mejora en la tolerancia y en la capacidad de mantenerse en posiciones de alta demanda. Punto importante para su preparación competitiva.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="foto-grid cols-2">
+        <img src="fotos 2/DSC02116.JPG" alt="Leg scale alto — arabesque asistido">
+        <img src="fotos 2/DSC02139.JPG" alt="Straddle — extensión alta">
+      </div>
+      <p class="foto-caption">Extensiones · Resultado del trabajo de flexibilidad y resistencia</p>
+
+      <div class="tag-list">
+        <span class="tag logro">Extensiones de pierna más altas</span>
+        <span class="tag logro">Straddle con mayor rango</span>
+        <span class="tag logro">Back walkover iniciado con barril</span>
+        <span class="tag logro">Resistencia mental al estiramiento</span>
+        <span class="tag trabajo">Back walkover sin asistencia — en progresión</span>
+        <span class="tag trabajo">Middle split completo — en proceso</span>
+      </div>
+
+      <div class="conclusion-box">
+        <p>Estas sesiones marcaron un punto de madurez en el proceso de Mikela. <strong>Aprender a sostener la incomodidad</strong> es una habilidad que va más allá de la flexibilidad — es la base del entrenamiento avanzado. Que Mikela pueda trabajar ese aspecto a los 10 años habla de su desarrollo como atleta.</p>
+        <p>Con la <strong>Copa de las Américas en el horizonte</strong>, el trabajo realizado en estas sesiones — apertura, extensiones altas y control corporal — se refleja directamente en los elementos que serán evaluados en competencia. Mikela va en la dirección correcta.</p>
       </div>
     </div>
   </div>
 
   <!-- ══════════ RESUMEN FINAL ══════════ -->
-  <div class="section">
+  <div class="section reveal">
     <p class="section-eyebrow">Visión general</p>
     <h2 class="section-title">Resumen de <span class="accent">progreso</span></h2>
-    <p>A lo largo de las primeras 4 sesiones, Mikela ha demostrado una evolución positiva y constante. Su actitud frente al entrenamiento es uno de sus mayores activos: recibe correcciones bien, se esfuerza hasta el final y no se rinde cuando algo le cuesta.</p>
+    <p>A lo largo de las 8 sesiones del programa, Mikela ha demostrado una evolución positiva, constante y sostenida. Su actitud frente al entrenamiento es uno de sus mayores activos: recibe correcciones bien, se esfuerza hasta el final y no se rinde cuando algo le cuesta — incluso cuando es incómodo.</p>
 
     <div class="item-list">
       <div class="item green">
         <span class="item-icon">✅</span>
         <div class="item-text">Logros confirmados
-          <span>Mejora en saltos y fuerza de piernas · Round off en progresión activa · Mejor conciencia en puntas de pie · Corrección técnica rápida en parada de manos y puente.</span>
+          <span>Mejora en saltos y fuerza de piernas · Round off en progresión activa · Mejor conciencia en puntas de pie · Extensiones de pierna más altas · Straddle con mayor rango · Back walkover iniciado · Resistencia mental al estiramiento desarrollada.</span>
         </div>
       </div>
       <div class="item orange">
         <span class="item-icon">🎯</span>
         <div class="item-text">Áreas en desarrollo
-          <span>Fuerza abdominal (prioridad principal) · Round off completo sin apoyo · Split izquierdo y middle split · Líneas corporales en movimiento.</span>
+          <span>Fuerza abdominal (prioridad principal) · Round off completo sin apoyo · Back walkover sin asistencia · Middle split completo · Líneas corporales en movimiento.</span>
         </div>
       </div>
       <div class="item blue">
-        <span class="item-icon">📅</span>
-        <div class="item-text">Próximo hito
-          <span>Evaluación selección Nivel 1 — junio 2026. El proceso avanza en la dirección correcta.</span>
+        <span class="item-icon">🏆</span>
+        <div class="item-text">Objetivo competitivo
+          <span>Copa de las Américas — competencia internacional de gimnasia artística en Perú. El proceso avanza en la dirección correcta.</span>
         </div>
       </div>
     </div>
@@ -781,10 +1031,31 @@
 
   <!-- ══════════ FOOTER ══════════ -->
   <div class="footer">
-    <p>CGC ELITE 1:1 — Camila Garay Coach · Informes 1–3 · Marzo–Abril 2026</p>
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informes 1–4 · Marzo–Mayo 2026</p>
     <div class="rainbow-line"></div>
   </div>
 
 </div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Ocultar scroll hint al primer scroll
+  const hint = document.querySelector('.scroll-hint');
+  if (hint) {
+    window.addEventListener('scroll', () => {
+      hint.style.opacity = '0';
+      hint.style.transition = 'opacity 0.4s';
+    }, { once: true });
+  }
+</script>
 </body>
 </html>
