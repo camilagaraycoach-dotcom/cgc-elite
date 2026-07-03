@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe 1 — Annika Rosas Escobar | CGC ELITE</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #E8302A; --orange: #F47B20; --pink: #E5406A;
+    --purple: #8B4FA8; --blue: #4A7FC1; --green: #2ECC71;
+    --dark: #1C1820; --white: #ffffff;
+  }
+  body { font-family: 'Inter', sans-serif; background: #F4F2F8; color: var(--dark); -webkit-font-smoothing: antialiased; }
+  .rainbow { height: 6px; background: linear-gradient(to right,var(--red),var(--orange),var(--pink),var(--purple),var(--blue)); position: fixed; top:0;left:0;right:0;z-index:100; }
+  .page { max-width: 760px; margin: 0 auto; padding: 80px 24px 80px; }
+
+  /* HEADER */
+  .header { background: linear-gradient(160deg,#1A0B2E 0%,#2D1654 60%,#1A2744 100%); border-radius: 20px; padding: 48px 56px 40px 40px; margin-bottom: 32px; position: relative; overflow: hidden; }
+  .header::after { content:''; position:absolute;top:0;right:0;width:6px;height:100%; background: linear-gradient(to bottom,var(--red),var(--orange),var(--pink),var(--purple),var(--blue)); }
+  .header-top { display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap; }
+  .badge-programa { font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:var(--white);background:linear-gradient(to right,var(--purple),var(--blue));padding:7px 16px;border-radius:4px;display:inline-block; }
+  .badge-informe { font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--orange);border:1.5px solid var(--orange);padding:7px 16px;border-radius:4px;display:inline-block; }
+  .badge-fecha { font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:7px 16px;border-radius:4px;display:inline-block;background:rgba(255,255,255,0.07); }
+  .header h1 { font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(28px,5vw,46px);line-height:1.1;color:var(--white);margin-bottom:8px; }
+  .header h1 .grad { background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+  .header-sub { font-size:15px;color:rgba(255,255,255,0.6);font-weight:400;letter-spacing:0.5px;margin-bottom:28px; }
+  .header-meta { display:flex;flex-wrap:wrap;gap:12px; }
+  .meta-item { background:rgba(255,255,255,0.08);border-radius:8px;padding:10px 18px;display:flex;align-items:center;gap:10px; }
+  .meta-icon { font-size:18px; }
+  .meta-label { font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.45);font-weight:600;display:block; }
+  .meta-value { font-size:14px;font-weight:700;color:var(--white);display:block; }
+
+  /* SECCIÓN */
+  .section { background:var(--white);border-radius:16px;padding:36px;margin-bottom:20px;box-shadow:0 4px 20px rgba(28,24,32,0.07); }
+  .section-eyebrow { font-size:11px;font-weight:800;letter-spacing:5px;text-transform:uppercase;margin-bottom:10px;color:var(--purple); }
+  .section-title { font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(22px,4vw,30px);line-height:1.1;margin-bottom:22px;color:var(--dark); }
+  .section-title .accent { color:var(--pink); }
+  .section p { font-size:15px;line-height:1.75;color:#444; }
+  .section p + p { margin-top:14px; }
+
+  /* ITEMS */
+  .item-list { display:flex;flex-direction:column;gap:12px;margin-top:20px; }
+  .item { display:flex;align-items:flex-start;gap:16px;padding:16px 20px;background:rgba(139,79,168,0.06);border-left:5px solid var(--purple);border-radius:0 10px 10px 0; }
+  .item.red   { background:rgba(232,48,42,0.06);border-left-color:var(--red); }
+  .item.orange{ background:rgba(244,123,32,0.07);border-left-color:var(--orange); }
+  .item.pink  { background:rgba(229,64,106,0.06);border-left-color:var(--pink); }
+  .item.blue  { background:rgba(74,127,193,0.07);border-left-color:var(--blue); }
+  .item.green { background:rgba(46,204,113,0.07);border-left-color:var(--green); }
+  .item-icon  { font-size:22px;flex-shrink:0;line-height:1.4; }
+  .item-text  { font-size:15px;color:#333;font-weight:600;line-height:1.5; }
+  .item-text span { display:block;font-size:13px;font-weight:400;color:#666;margin-top:3px; }
+
+  /* HIGHLIGHT */
+  .highlight-box { background:linear-gradient(135deg,#1A0B2E,#2D1654);border-radius:12px;padding:28px;margin-top:24px; }
+  .highlight-box p { font-size:15px;color:rgba(255,255,255,0.75);line-height:1.75;font-weight:300; }
+  .highlight-box strong { font-weight:800;color:var(--orange); }
+
+  /* DIAGNÓSTICO GRID */
+  .diag-grid { display:flex;flex-wrap:wrap;gap:12px;margin-top:20px; }
+  .diag-card { flex:1;min-width:150px;border-radius:12px;padding:20px 18px; }
+  .diag-card.bien { background:linear-gradient(135deg,#E8F8F1,#D5F4E6); }
+  .diag-card.trabajo { background:linear-gradient(135deg,#FFF4E8,#FFE8CC); }
+  .diag-card.foco { background:linear-gradient(135deg,#F3EAFF,#EDD9FF); }
+  .diag-card-label { font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px; }
+  .diag-card.bien .diag-card-label { color:#27AE60; }
+  .diag-card.trabajo .diag-card-label { color:#E67E22; }
+  .diag-card.foco .diag-card-label { color:var(--purple); }
+  .diag-card-value { font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;line-height:1.2; }
+  .diag-card.bien .diag-card-value { color:#1E8449; }
+  .diag-card.trabajo .diag-card-value { color:#D35400; }
+  .diag-card.foco .diag-card-value { color:#6C3483; }
+
+  /* PRIORIDADES */
+  .prioridad-list { display:flex;flex-direction:column;gap:16px;margin-top:24px; }
+  .prioridad-item { display:flex;gap:18px;align-items:flex-start;padding:18px 20px;background:#F9F7FF;border-radius:12px;border:1.5px solid rgba(139,79,168,0.12); }
+  .prioridad-num { font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;color:var(--purple);line-height:1;flex-shrink:0;min-width:28px;opacity:0.35; }
+  .prioridad-title { font-size:15px;font-weight:700;color:var(--dark);margin-bottom:5px; }
+  .prioridad-desc { font-size:13px;color:#666;line-height:1.6; }
+
+  /* LOGRO */
+  .logro-section { background:linear-gradient(160deg,#0B2E1A 0%,#164D2D 60%,#0D2744 100%);border-radius:16px;padding:40px 36px;margin-bottom:20px;box-shadow:0 8px 32px rgba(46,204,113,0.2);position:relative;overflow:hidden; }
+  .logro-section::after { content:'';position:absolute;top:0;right:0;width:6px;height:100%;background:linear-gradient(to bottom,var(--green),var(--blue),var(--purple)); }
+  .logro-section .section-eyebrow { color:#7EDCA0; }
+  .logro-section .section-title { color:var(--white); }
+  .logro-section .section-title .accent { background:linear-gradient(to right,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+  .logro-section p { font-size:15px;color:rgba(255,255,255,0.75);line-height:1.8; }
+  .logro-quote { background:rgba(255,255,255,0.07);border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:20px 22px;margin-top:24px; }
+  .logro-quote p { font-size:16px;color:rgba(255,255,255,0.9);font-weight:500;line-height:1.7;font-style:italic; }
+
+  /* FOTOS INLINE */
+  .inline-gallery { display:grid;gap:8px;margin-top:20px;margin-bottom:4px; }
+  .inline-gallery.cols3 { grid-template-columns: repeat(3,1fr); }
+  .inline-gallery.cols2 { grid-template-columns: repeat(2,1fr); }
+  .inline-gallery.cols4 { grid-template-columns: repeat(4,1fr); }
+  .inline-photo { border-radius:10px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;position:relative; }
+  .inline-photo img { width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform 0.2s ease;display:block; }
+  .inline-photo:hover img { transform:scale(1.04); }
+
+  /* Split fotos — más grandes, landscape */
+  .split-gallery { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px;margin-bottom:4px; }
+  .split-photo { border-radius:12px;overflow:hidden;aspect-ratio:4/3;cursor:pointer; }
+  .split-photo img { width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform 0.2s ease;display:block; }
+  .split-photo:hover img { transform:scale(1.03); }
+
+  /* LIGHTBOX */
+  .lightbox { display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.93);align-items:center;justify-content:center;flex-direction:column; }
+  .lightbox.active { display:flex; }
+  .lightbox img { max-width:92vw;max-height:82vh;border-radius:10px;object-fit:contain; }
+  .lightbox-nav { display:flex;gap:20px;margin-top:18px;align-items:center; }
+  .lightbox-btn { background:rgba(255,255,255,0.12);border:none;color:white;font-size:22px;width:48px;height:48px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center; }
+  .lightbox-btn:hover { background:rgba(255,255,255,0.22); }
+  .lightbox-counter { color:rgba(255,255,255,0.55);font-size:13px;font-weight:600;min-width:60px;text-align:center; }
+  .lightbox-close { position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.1);border:none;color:white;font-size:24px;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center; }
+  .lightbox-close:hover { background:rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  .footer { text-align:center;padding:24px 0 8px; }
+  .footer p { font-size:12px;color:#AAA;letter-spacing:1px;text-transform:uppercase;font-weight:600; }
+  .footer .rainbow-line { height:4px;width:80px;margin:12px auto 0;background:linear-gradient(to right,var(--red),var(--orange),var(--pink),var(--purple),var(--blue));border-radius:99px; }
+
+  @media print {
+    @page { margin:14mm 12mm;size:A4; }
+    .rainbow { display:none; }
+    body { background:white; }
+    .page { padding:0;max-width:100%; }
+    .inline-gallery,.split-gallery { break-inside:avoid;page-break-inside:avoid; }
+    .section,.logro-section,.highlight-box,.item,.diag-card,.prioridad-item,.footer { break-inside:avoid;page-break-inside:avoid; }
+    .section,.logro-section { margin-bottom:14px; }
+    .lightbox { display:none !important; }
+    * { -webkit-print-color-adjust:exact !important;print-color-adjust:exact !important; }
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .page { padding: 68px 14px 60px; }
+    .header { padding: 32px 24px 28px; border-radius: 14px; margin-bottom: 20px; }
+    .header h1 { font-size: clamp(26px, 8vw, 36px); }
+    .header-sub { font-size: 13px; margin-bottom: 18px; }
+    .header-top { gap: 8px; margin-bottom: 18px; }
+    .badge-programa, .badge-informe, .badge-fecha { font-size: 9px; padding: 5px 10px; letter-spacing: 2px; }
+    .header-meta { gap: 8px; }
+    .meta-item { padding: 8px 12px; gap: 8px; }
+    .meta-icon { font-size: 15px; }
+    .meta-label { font-size: 9px; letter-spacing: 1px; }
+    .meta-value { font-size: 12px; }
+    .section { padding: 24px 18px; border-radius: 12px; margin-bottom: 14px; }
+    .logro-section { padding: 28px 18px; border-radius: 12px; margin-bottom: 14px; }
+    .section-eyebrow { font-size: 9px; letter-spacing: 3px; }
+    .section-title { font-size: clamp(20px, 6vw, 26px); margin-bottom: 16px; }
+    .section p { font-size: 14px; line-height: 1.7; }
+    .item { padding: 12px 14px; gap: 12px; }
+    .item-icon { font-size: 18px; }
+    .item-text { font-size: 14px; }
+    .item-text span { font-size: 12px; }
+    .highlight-box { padding: 18px; }
+    .highlight-box p { font-size: 14px; }
+    .diag-grid { grid-template-columns: 1fr; gap: 8px; display: grid; }
+    .diag-card { min-width: unset; }
+    .prioridad-item { padding: 14px 14px; gap: 12px; }
+    .prioridad-num { font-size: 22px; }
+    .prioridad-title { font-size: 14px; }
+    .prioridad-desc { font-size: 12px; }
+    .inline-gallery.cols3 { grid-template-columns: repeat(2, 1fr); }
+    .inline-gallery.cols4 { grid-template-columns: repeat(2, 1fr); }
+    .inline-gallery { gap: 6px; }
+    .inline-photo { aspect-ratio: 4/3; border-radius: 8px; }
+    .split-gallery { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .split-photo { border-radius: 8px; }
+    .logro-quote { padding: 14px 16px; }
+    .logro-quote p { font-size: 14px; }
+    .lightbox img { max-width: 96vw; max-height: 75vh; }
+    .lightbox-close { top: 12px; right: 14px; width: 38px; height: 38px; font-size: 20px; }
+    .lightbox-btn { width: 40px; height: 40px; font-size: 18px; }
+    .lightbox-nav { gap: 14px; margin-top: 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="rainbow"></div>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge-programa">CGC ELITE 1:1</span>
+      <span class="badge-informe">Informe 1</span>
+      <span class="badge-fecha">2 y 3 de julio · 2026</span>
+    </div>
+    <h1><span class="grad">Annika</span><br>Rosas Escobar</h1>
+    <p class="header-sub">Clases 1 y 2 — El puente y los primeros pasos hacia la parada de manos</p>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-icon">📅</span><div><span class="meta-label">Clases</span><span class="meta-value">Nº 1 y 2</span></div></div>
+      <div class="meta-item"><span class="meta-icon">📍</span><div><span class="meta-label">Ubicación</span><span class="meta-value">España · Virtual</span></div></div>
+      <div class="meta-item"><span class="meta-icon">💻</span><div><span class="meta-label">Modalidad</span><span class="meta-value">Virtual</span></div></div>
+      <div class="meta-item"><span class="meta-icon">✅</span><div><span class="meta-label">Estado</span><span class="meta-value">Completadas</span></div></div>
+    </div>
+  </div>
+
+  <!-- RESUMEN DE LA CLASE -->
+  <div class="section">
+    <p class="section-eyebrow">Primeras dos sesiones en vivo</p>
+    <h2 class="section-title">Resumen de las <span class="accent">clases</span></h2>
+    <p>En la entrevista inicial, Annika compartió directamente sus dos metas más importantes: lograr el <strong>puente</strong> y llegar a la <strong>parada de manos</strong>. Con esa información se diseñaron las dos primeras clases: la primera enfocada por completo en el puente, y la segunda dando los primeros pasos técnicos hacia la parada de manos.</p>
+
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">🌉</span>
+        <div class="item-text">Clase 1 — Camino hacia el puente
+          <span>Sesión completa de flexibilidad de espalda, fuerza de brazos, activación de glúteos, movilidad de columna y movilidad de hombros, con acompañamiento de su mamá durante todo el trabajo.</span>
+        </div>
+      </div>
+    </div>
+    <div class="inline-gallery cols3" style="margin-bottom:20px;">
+      <div class="inline-photo" onclick="openLightbox(0)"><img src="fotos/clase1_01_hombros_banda.jpg" alt="Movilidad de hombros con banda elástica"></div>
+      <div class="inline-photo" onclick="openLightbox(1)"><img src="fotos/clase1_02_gluteos_banda.jpg" alt="Activación de glúteos con banda elástica"></div>
+      <div class="inline-photo" onclick="openLightbox(2)"><img src="fotos/clase1_03_movilidad_columna.jpg" alt="Movilidad de columna — estiramiento de espalda"></div>
+    </div>
+    <div class="inline-gallery cols2" style="margin-bottom:20px;">
+      <div class="inline-photo" onclick="openLightbox(3)"><img src="fotos/clase1_04_flexibilidad_espalda.jpg" alt="Flexibilidad de espalda — extensión de columna"></div>
+      <div class="inline-photo" onclick="openLightbox(4)"><img src="fotos/clase1_05_superman_banda.jpg" alt="Fuerza de espalda y glúteos — superman con banda"></div>
+    </div>
+
+    <div class="item-list">
+      <div class="item pink">
+        <span class="item-icon">🤸</span>
+        <div class="item-text">Clase 2 — Primeros pasos hacia la parada de manos
+          <span>Trabajo de fuerza de abdomen, fuerza de pateo y fuerza de brazos. Se logró un rodamiento hacia adelante — prerrequisito clave para la parada de manos — y se introdujo el trabajo de parada de codos contra la pared para que Annika empiece a sentir la posición vertical.</span>
+        </div>
+      </div>
+    </div>
+    <div class="inline-gallery cols2" style="margin-bottom:4px;">
+      <div class="inline-photo" onclick="openLightbox(5)"><img src="fotos/clase2_01_fuerza_pared.jpg" alt="Fuerza de brazos contra la pared — prerrequisito parada de manos"></div>
+      <div class="inline-photo" onclick="openLightbox(6)"><img src="fotos/clase2_02_parada_codos.jpg" alt="Parada de codos contra la pared con asistencia"></div>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section">
+    <p class="section-eyebrow">Evaluación de las primeras dos clases</p>
+    <h2 class="section-title">Diagnóstico <span class="accent">observado</span></h2>
+    <p>Annika respondió muy bien al trabajo de base en ambas sesiones. Viniendo de la natación, no tenía experiencia previa en ninguna de las dos habilidades — y aun así avanzó de forma clara en las dos, mostrando buena capacidad de aprendizaje motor y disposición a intentar posiciones nuevas con ayuda.</p>
+    <div class="diag-grid">
+      <div class="diag-card bien"><div class="diag-card-label">Logro</div><div class="diag-card-value">Puente con bloques</div></div>
+      <div class="diag-card trabajo"><div class="diag-card-label">En proceso</div><div class="diag-card-value">Fuerza de brazos y hombros</div></div>
+      <div class="diag-card foco"><div class="diag-card-label">Foco técnico</div><div class="diag-card-value">Vertical — parada de codos</div></div>
+    </div>
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">✅</span>
+        <div class="item-text">Puente: de no separar la cabeza del piso a sostenerse sola
+          <span>Annika nunca había logrado separar la cabeza del suelo en el puente. Con bloques como apoyo y la ayuda de su mamá, lo consiguió en la primera clase — y llegó a sostenerse sola por unos segundos.</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">🔍</span>
+        <div class="item-text">Fuerza de brazos y hombros: la base que hay que seguir construyendo
+          <span>Al no tener trabajo previo en gimnasia, la fuerza de sostén en brazos y hombros es todavía limitada. Es normal en esta etapa y es exactamente el punto de partida esperado — se seguirá reforzando en cada clase.</span>
+        </div>
+      </div>
+      <div class="item pink">
+        <span class="item-icon">🤸</span>
+        <div class="item-text">Rodamiento hacia adelante: entendido y logrado
+          <span>Annika comprendió bien la mecánica del rodamiento hacia adelante, prerrequisito de la parada de manos, y lo ejecutó con éxito. El siguiente paso técnico es trabajar específicamente cómo "pararse" desde ahí.</span>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p>Annika no llega con base técnica en gimnasia, pero eso <strong>no la frenó</strong>: en dos clases ya logró su primer puente sostenido y entendió el rodamiento hacia adelante. Es una base de aprendizaje rápida sobre la cual construir con seguridad.</p>
+    </div>
+  </div>
+
+  <!-- LOGRO -->
+  <div class="logro-section">
+    <p class="section-eyebrow">Hito de la sesión</p>
+    <h2 class="section-title">Su primer <span class="accent">puente</span></h2>
+    <p>El logro más significativo de estas dos clases ocurrió al cierre de la primera sesión: después de trabajar flexibilidad de espalda, fuerza de brazos, glúteos, columna y hombros durante toda la clase, Annika hizo su primer puente con ayuda de bloques y de su mamá.</p>
+    <div class="split-gallery">
+      <div class="split-photo" onclick="openLightbox(4)"><img src="fotos/clase1_05_superman_banda.jpg" alt="Preparación de fuerza previa al puente"></div>
+      <div class="split-photo" onclick="openLightbox(5)"><img src="fotos/clase2_01_fuerza_pared.jpg" alt="Fuerza de brazos — camino a la parada de manos"></div>
+      <div class="split-photo" onclick="openLightbox(6)"><img src="fotos/clase2_02_parada_codos.jpg" alt="Parada de codos — sensación de la vertical"></div>
+    </div>
+    <div class="logro-quote">
+      <p>Annika contó que nunca había podido separar la cabeza del piso en el puente. Con los bloques y el acompañamiento de su mamá, no solo lo logró — llegó a mantenerse sola. Un miedo vencido en la primera clase.</p>
+    </div>
+    <p style="margin-top:20px;">En la segunda clase, ese mismo impulso se trasladó a la parada de manos: el rodamiento hacia adelante quedó <strong style="color:#7EDCA0;">entendido y logrado</strong>, dejando el terreno listo para empezar a trabajar la fase de "pararse" en las próximas sesiones.</p>
+  </div>
+
+  <!-- PRIORIDADES -->
+  <div class="section">
+    <p class="section-eyebrow">Plan de trabajo</p>
+    <h2 class="section-title">Prioridades <span class="accent">técnicas</span></h2>
+    <p>Con base en lo observado en estas dos primeras clases, las siguientes son las prioridades técnicas que guiarán las próximas sesiones:</p>
+    <div class="prioridad-list">
+      <div class="prioridad-item"><div class="prioridad-num">1</div><div><div class="prioridad-title">Consolidar el puente sin apoyo de bloques</div><div class="prioridad-desc">Repetir la secuencia de flexibilidad de espalda, fuerza de brazos y activación de glúteos que llevó al primer logro, reduciendo progresivamente el uso de bloques hasta lograr el puente completo desde el piso.</div></div></div>
+      <div class="prioridad-item"><div class="prioridad-num">2</div><div><div class="prioridad-title">Fuerza de brazos y hombros para sostener el peso corporal</div><div class="prioridad-desc">Base indispensable tanto para el puente sin ayuda como para la parada de manos. Se seguirá trabajando con ejercicios progresivos de plancha, apoyo y bandas.</div></div></div>
+      <div class="prioridad-item"><div class="prioridad-num">3</div><div><div class="prioridad-title">De la parada de codos a la parada de manos</div><div class="prioridad-desc">Con el rodamiento hacia adelante ya entendido, el siguiente paso es trabajar la fase de "pararse" contra la pared, ganando control de la vertical antes de soltar el apoyo.</div></div></div>
+      <div class="prioridad-item"><div class="prioridad-num">4</div><div><div class="prioridad-title">Fuerza de core y de pateo</div><div class="prioridad-desc">Continuar el trabajo de abdomen y de pateo iniciado en la clase 2, clave para controlar el impulso hacia la parada de manos sin perder el equilibrio.</div></div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informe 1 · Julio 2026</p>
+    <div class="rainbow-line"></div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-nav">
+    <button class="lightbox-btn" onclick="navLightbox(-1)">&#8592;</button>
+    <span class="lightbox-counter" id="lightbox-counter"></span>
+    <button class="lightbox-btn" onclick="navLightbox(1)">&#8594;</button>
+  </div>
+</div>
+
+<script>
+const FOTOS = [
+  'fotos/clase1_01_hombros_banda.jpg',
+  'fotos/clase1_02_gluteos_banda.jpg',
+  'fotos/clase1_03_movilidad_columna.jpg',
+  'fotos/clase1_04_flexibilidad_espalda.jpg',
+  'fotos/clase1_05_superman_banda.jpg',
+  'fotos/clase2_01_fuerza_pared.jpg',
+  'fotos/clase2_02_parada_codos.jpg',
+  'fotos/clase1_06_logro_puente_bloques.jpg'
+];
+let current = 0;
+function openLightbox(i) { current = i; document.getElementById('lightbox').classList.add('active'); updateLightbox(); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+function navLightbox(dir) { current = (current + dir + FOTOS.length) % FOTOS.length; updateLightbox(); }
+function updateLightbox() {
+  document.getElementById('lightbox-img').src = FOTOS[current];
+  document.getElementById('lightbox-counter').textContent = (current+1) + ' / ' + FOTOS.length;
+}
+document.getElementById('lightbox').addEventListener('click', function(e) { if(e.target===this) closeLightbox(); });
+document.addEventListener('keydown', function(e) {
+  if(!document.getElementById('lightbox').classList.contains('active')) return;
+  if(e.key==='ArrowRight') navLightbox(1);
+  if(e.key==='ArrowLeft') navLightbox(-1);
+  if(e.key==='Escape') closeLightbox();
+});
+
+  // ─── SCROLL ANIMATIONS ───
+  const animTargets = document.querySelectorAll(
+    '.section, .logro-section, .item, .diag-card, .prioridad-item, .inline-photo, .split-photo, .highlight-box, .header-meta .meta-item'
+  );
+  animTargets.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = `opacity 0.55s ease ${(i % 8) * 0.06}s, transform 0.55s ease ${(i % 8) * 0.06}s`;
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  animTargets.forEach(el => observer.observe(el));
+
+  const header = document.querySelector('.header');
+  if (header) {
+    header.style.opacity = '0';
+    header.style.transform = 'translateY(20px)';
+    header.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      header.style.opacity = '1';
+      header.style.transform = 'translateY(0)';
+    }));
+  }
+</script>
+</body>
+</html>
