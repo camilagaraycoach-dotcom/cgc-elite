@@ -328,6 +328,51 @@
       margin-bottom: 14px;
     }
   }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .page { padding: 68px 14px 60px; }
+
+    .header { padding: 32px 24px 28px; border-radius: 14px; margin-bottom: 20px; }
+    .header h1 { font-size: clamp(26px, 8vw, 36px); }
+    .header-sub { font-size: 13px; margin-bottom: 18px; }
+    .header-top { gap: 8px; margin-bottom: 18px; }
+    .badge-programa, .badge-pais, .badge-premium { font-size: 9px; padding: 5px 10px; letter-spacing: 2px; }
+    .header-meta { gap: 8px; }
+    .meta-item { padding: 8px 12px; gap: 8px; }
+    .meta-icon { font-size: 15px; }
+    .meta-label { font-size: 9px; letter-spacing: 1px; }
+    .meta-value { font-size: 12px; }
+
+    .section { padding: 24px 18px; border-radius: 12px; margin-bottom: 14px; }
+    .objetivo-section, .clase-section { padding: 28px 18px; border-radius: 12px; margin-bottom: 14px; }
+    .section-eyebrow { font-size: 9px; letter-spacing: 3px; }
+    .section-title { font-size: clamp(20px, 6vw, 26px); margin-bottom: 16px; }
+    .section p { font-size: 14px; line-height: 1.7; }
+    .objetivo-section p { font-size: 14px; line-height: 1.7; }
+
+    .item { padding: 12px 14px; gap: 12px; }
+    .item-icon { font-size: 18px; }
+    .item-text { font-size: 14px; }
+    .item-text span { font-size: 12px; }
+
+    .highlight-box { padding: 18px; }
+    .highlight-box p { font-size: 14px; }
+
+    .horario-grid { gap: 8px; }
+    .horario-card { min-width: 100px; padding: 14px 12px; }
+    .horario-dia { font-size: 10px; letter-spacing: 2px; }
+    .horario-info { font-size: 12px; }
+
+    .compromiso-label span { font-size: 13px; }
+    .compromiso-label strong { font-size: 14px; }
+
+    .clase-grid { gap: 8px; }
+    .clase-card { min-width: 80px; padding: 14px 10px; }
+    .clase-card-icon { font-size: 22px; }
+    .clase-card-value { font-size: 17px; }
+    .clase-plan-item { font-size: 13px; gap: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -538,5 +583,55 @@
   </div>
 
 </div>
+
+<script>
+  // ─── SCROLL ANIMATIONS ───
+  const animTargets = document.querySelectorAll(
+    '.section, .objetivo-section, .clase-section, .item, .highlight-box, .horario-card, .clase-card, .clase-plan-item, .header-meta .meta-item'
+  );
+  animTargets.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = `opacity 0.55s ease ${(i % 8) * 0.06}s, transform 0.55s ease ${(i % 8) * 0.06}s`;
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  animTargets.forEach(el => observer.observe(el));
+
+  // Header entra con animación propia
+  const header = document.querySelector('.header');
+  if (header) {
+    header.style.opacity = '0';
+    header.style.transform = 'translateY(20px)';
+    header.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      header.style.opacity = '1';
+      header.style.transform = 'translateY(0)';
+    }));
+  }
+
+  // Barra de compromiso: animar el ancho al entrar en vista
+  const barFill = document.querySelector('.bar-fill');
+  if (barFill) {
+    const targetWidth = barFill.style.width;
+    barFill.style.width = '0%';
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          barFill.style.width = targetWidth;
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    barObserver.observe(barFill);
+  }
+</script>
 </body>
 </html>
