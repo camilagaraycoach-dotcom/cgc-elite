@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe CGC ELITE — Annika Rosas Escobar</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #E8302A;
+    --orange: #F47B20;
+    --pink: #E5406A;
+    --purple: #8B4FA8;
+    --blue: #4A7FC1;
+    --dark: #1C1820;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F2F8;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── BARRA RAINBOW ─── */
+  .rainbow {
+    height: 6px;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+
+  /* ─── WRAPPER ─── */
+  .page { max-width: 760px; margin: 0 auto; padding: 80px 24px 80px; }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 20px;
+    padding: 48px 56px 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .badge-programa {
+    font-size: 11px; font-weight: 800; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--white);
+    background: linear-gradient(to right, var(--purple), var(--blue));
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-pais {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    border: 1.5px solid var(--orange);
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-premium {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--pink);
+    border: 1.5px solid var(--pink);
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .header h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.1; color: var(--white);
+    margin-bottom: 8px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .header h1 .grad {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-sub {
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    font-weight: 400; letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .header-meta {
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+  .meta-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 10px 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .meta-icon { font-size: 18px; }
+  .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.45); font-weight: 600; display: block; }
+  .meta-value { font-size: 14px; font-weight: 700; color: var(--white); display: block; }
+
+  /* ─── SECCIÓN GENERAL ─── */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.07);
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 800; letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 10px;
+    color: var(--purple);
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1.1; margin-bottom: 22px;
+    color: var(--dark);
+  }
+  .section-title .accent { color: var(--pink); }
+  .section p {
+    font-size: 15px; line-height: 1.75; color: #444;
+    font-weight: 400;
+  }
+  .section p + p { margin-top: 14px; }
+
+  /* ─── BLOQUE DESTACADO ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1A0B2E, #2D1654);
+    border-radius: 12px; padding: 28px 28px;
+    margin-top: 24px;
+  }
+  .highlight-box p {
+    font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; font-weight: 300;
+  }
+  .highlight-box strong {
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  /* ─── LISTA DE ITEMS ─── */
+  .item-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px;
+    background: rgba(139,79,168,0.06);
+    border-left: 5px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+  }
+  .item.red   { background: rgba(232,48,42,0.06);  border-left-color: var(--red); }
+  .item.orange{ background: rgba(244,123,32,0.07); border-left-color: var(--orange); }
+  .item.pink  { background: rgba(229,64,106,0.06); border-left-color: var(--pink); }
+  .item.blue  { background: rgba(74,127,193,0.07); border-left-color: var(--blue); }
+  .item-icon  { font-size: 22px; flex-shrink: 0; line-height: 1.4; }
+  .item-text  { font-size: 15px; color: #333; font-weight: 600; line-height: 1.5; }
+  .item-text span { display: block; font-size: 13px; font-weight: 400; color: #666; margin-top: 3px; }
+
+  /* ─── HORARIOS ─── */
+  .horario-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .horario-card {
+    flex: 1; min-width: 140px;
+    background: linear-gradient(135deg, #F0EEFF, #E8F4FF);
+    border-radius: 12px; padding: 18px 20px;
+    text-align: center;
+  }
+  .horario-dia { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
+  .horario-info { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+
+  /* ─── COMPROMISO BAR ─── */
+  .compromiso-wrap { margin-top: 20px; }
+  .compromiso-label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .compromiso-label span { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .compromiso-label strong { font-size: 16px; font-weight: 900; color: var(--purple); }
+  .bar-bg {
+    height: 12px; background: #EEE; border-radius: 99px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(to right, var(--purple), var(--pink), var(--orange));
+    width: 80%;
+    transition: width 1s ease;
+  }
+  .compromiso-nota {
+    font-size: 13px; color: #888; margin-top: 10px; font-style: italic;
+  }
+
+  /* ─── OBJETIVO GENERAL ─── */
+  .objetivo-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .objetivo-section::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to top, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .objetivo-section .section-eyebrow { color: #C89FE0; }
+  .objetivo-section .section-title { color: var(--white); }
+  .objetivo-section .section-title .accent {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .objetivo-section p {
+    font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.8); font-weight: 400;
+  }
+
+  /* ─── PAQUETE / CLASE VIRTUAL ─── */
+  .clase-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .clase-section::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .clase-grid {
+    display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0;
+  }
+  .clase-card {
+    flex: 1; min-width: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px 16px;
+    text-align: center;
+  }
+  .clase-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .clase-card-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px;
+  }
+  .clase-card-value {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 22px; color: var(--white);
+  }
+  .clase-nota {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    font-style: italic; margin-bottom: 24px;
+    border-left: 3px solid rgba(255,255,255,0.15);
+    padding-left: 14px;
+  }
+  .clase-plan { display: flex; flex-direction: column; gap: 12px; }
+  .clase-plan-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
+  }
+  .clase-plan-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 24px 0 8px;
+  }
+  .footer p {
+    font-size: 12px; color: #AAA; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .footer .rainbow-line {
+    height: 4px; width: 80px; margin: 12px auto 0;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    border-radius: 99px;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page { margin: 14mm 12mm; size: A4; }
+    .rainbow { display: none; }
+    body { background: white; }
+    .page { padding: 0; max-width: 100%; }
+
+    .section,
+    .objetivo-section,
+    .clase-section,
+    .highlight-box,
+    .item,
+    .horario-card,
+    .clase-card,
+    .clase-plan,
+    .meta-item,
+    .footer {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .section,
+    .objetivo-section,
+    .clase-section {
+      break-before: auto;
+      page-break-before: auto;
+    }
+
+    .item-list,
+    .horario-grid,
+    .clase-grid,
+    .clase-plan,
+    .header-meta {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .section,
+    .objetivo-section,
+    .clase-section {
+      margin-bottom: 14px;
+    }
+
+    .header {
+      margin-bottom: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow"></div>
+
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge-programa">CGC ELITE 1:1</span>
+      <span class="badge-pais">España</span>
+      <span class="badge-premium">Premium</span>
+    </div>
+    <h1><span class="grad">Annika</span><br>Rosas Escobar</h1>
+    <p class="header-sub">Informe de diagnóstico y plan personalizado — Julio 2026</p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-icon">🎂</span>
+        <div>
+          <span class="meta-label">Edad</span>
+          <span class="meta-value">9 años</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📍</span>
+        <div>
+          <span class="meta-label">Ubicación</span>
+          <span class="meta-value">España</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💻</span>
+        <div>
+          <span class="meta-label">Modalidad</span>
+          <span class="meta-value">Virtual</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">🏊</span>
+        <div>
+          <span class="meta-label">Disciplina</span>
+          <span class="meta-value">Natación → Gimnasia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PERFIL DEL ATLETA ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Diagnóstico inicial</p>
+    <h2 class="section-title">Perfil de la <span class="accent">atleta</span></h2>
+    <p>Annika Rosas Escobar tiene 9 años y vive en España. Su disciplina principal hasta ahora ha sido la natación, por lo que llega al programa CGC ELITE sin una base formal previa en gimnasia. Esto la convierte en principiante absoluta en las habilidades específicas que quiere lograr, aunque su condición física de base — coordinación, resistencia y conciencia corporal ganadas en el agua — es un punto de partida favorable para la transición.</p>
+    <p>Su meta es clara y concreta: incorporarse pronto a una clase de gimnasia colectiva, y para eso necesita construir, desde cero y con guía profesional, las habilidades técnicas que ese grupo ya está trabajando. El programa CGC ELITE 1:1 acompaña exactamente esa transición — de nadadora a gimnasta en formación — con una progresión segura y personalizada.</p>
+  </div>
+
+  <!-- ══════════ LESIONES ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Consideraciones de salud</p>
+    <h2 class="section-title">Lesiones y <span class="accent">limitaciones</span></h2>
+    <p>Annika no reporta lesiones ni limitaciones médicas actuales. Su punto de partida es un cuerpo sano y activo, sin antecedentes que condicionen el trabajo.</p>
+    <div class="item-list">
+      <div class="item blue">
+        <span class="item-icon">✅</span>
+        <div class="item-text">Sin lesiones reportadas
+          <span>No se registran lesiones activas ni antecedentes médicos relevantes al inicio del proceso.</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">⚠️</span>
+        <div class="item-text">Principiante absoluta en gimnasia
+          <span>Al no tener base previa en rueda ni en inversiones, el enfoque inicial prioriza fuerza de core, hombros y muñecas antes de introducir el peso corporal en posiciones invertidas.</span>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p><strong>Construir la base antes que la habilidad</strong> es la prioridad de seguridad para Annika: fuerza de sostén en brazos y hombros, y control de core, son el cimiento sobre el que se apoyarán la rueda y el pino.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ OBJETIVOS ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Metas declaradas</p>
+    <h2 class="section-title">Objetivos <span class="accent">declarados</span></h2>
+    <div class="item-list">
+      <div class="item pink">
+        <span class="item-icon">🤸</span>
+        <div class="item-text">Rueda lateral (aspa de molino)
+          <span>Objetivo técnico principal: dominar la rueda lateral con alineación correcta de brazos, apoyo de manos y coordinación de piernas.</span>
+        </div>
+      </div>
+      <div class="item pink">
+        <span class="item-icon">🙆</span>
+        <div class="item-text">Pino (parada de cabeza)
+          <span>Segunda habilidad meta: construir el pino con control de equilibrio, activación de core y seguridad en la inversión.</span>
+        </div>
+      </div>
+      <div class="item blue">
+        <span class="item-icon">🎯</span>
+        <div class="item-text">Incorporarse a una clase de gimnasia colectiva
+          <span>Objetivo de fondo detectado en la entrevista: avanzar lo suficientemente rápido en estas dos habilidades para poder sumarse con confianza a un grupo de gimnasia.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOTIVACIÓN ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Análisis interno</p>
+    <h2 class="section-title">Motivación y <span class="accent">necesidad detectada</span></h2>
+    <p>Lo que impulsa a Annika y a su familia a buscar acompañamiento personalizado es la necesidad de avanzar más rápido de lo que permitiría una clase grupal, específicamente para poder acoplarse a una clase de gimnasia colectiva sin quedar rezagada frente al resto del grupo.</p>
+    <p>Viniendo de la natación, Annika no cuenta con el vocabulario técnico ni la base motriz específica de la gimnasia, por lo que la guía 1:1 cumple un rol clave: comprimir en sesiones personalizadas el trabajo de base que normalmente se construye de forma progresiva en grupo, sin saltarse pasos de seguridad.</p>
+    <p>Más allá de la técnica, lo que se detecta es una necesidad de <strong>confianza</strong>: llegar a su futura clase grupal ya sabiendo hacer la rueda y el pino, en lugar de aprenderlos frente a sus compañeras, le dará una base sólida desde la cual disfrutar el grupo en vez de sentirse atrás.</p>
+  </div>
+
+  <!-- ══════════ DISPONIBILIDAD ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Logística del proceso</p>
+    <h2 class="section-title">Disponibilidad y <span class="accent">modalidad</span></h2>
+    <p>Modalidad <strong>virtual</strong> desde España. Su horario disponible es a partir de las 16:00 h (hora España), que equivale a las 9:00 am hora Perú. Annika también tiene posibilidad de seguir clases grupales CGC en vivo, lo cual suma un complemento valioso a su proceso 1:1.</p>
+    <div class="horario-grid">
+      <div class="horario-card">
+        <div class="horario-dia">Disponible desde</div>
+        <div class="horario-info">16:00 h España<br><span style="font-size:11px;color:#888;">= 9:00 am Perú</span></div>
+      </div>
+      <div class="horario-card">
+        <div class="horario-dia">Modalidad</div>
+        <div class="horario-info">Virtual<br><span style="font-size:11px;color:#888;">Desde casa</span></div>
+      </div>
+      <div class="horario-card">
+        <div class="horario-dia">Clases grupales</div>
+        <div class="horario-info">En vivo<br><span style="font-size:11px;color:#888;">Puede asistir</span></div>
+      </div>
+    </div>
+    <div class="item-list" style="margin-top: 20px;">
+      <div class="item blue">
+        <span class="item-icon">⭐</span>
+        <div class="item-text">Ventana horaria fija — desde las 16:00 h España
+          <span>Equivale a las 9:00 am en Perú. El día exacto de la clase 1:1 se confirma con la familia dentro de esta ventana.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">🎥</span>
+        <div class="item-text">Clases grupales CGC — en vivo
+          <span>Annika puede seguir las clases grupales en vivo, lo que refuerza flexibilidad y trabajo complementario entre sesiones 1:1.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ COMPROMISO ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Evaluación interna</p>
+    <h2 class="section-title">Nivel de <span class="accent">compromiso</span></h2>
+    <p>La familia de Annika muestra compromiso claro desde el primer contacto: formulario completo, objetivos concretos y un canal de comunicación directo a través de su mamá, Anny Escobar Castro. La meta declarada de ver resultados en 1 mes refleja entusiasmo y urgencia por avanzar, que se canalizará hacia una progresión técnica segura — priorizando primero la base de fuerza necesaria antes de las habilidades invertidas, para lograr un avance real y sostenible.</p>
+    <div class="compromiso-wrap">
+      <div class="compromiso-label">
+        <span>Nivel de compromiso estimado</span>
+        <strong>ALTO</strong>
+      </div>
+      <div class="bar-bg">
+        <div class="bar-fill"></div>
+      </div>
+      <p class="compromiso-nota">Anny es el punto de contacto principal. Se espera seguimiento activo y puntualidad en las sesiones dentro de la ventana horaria disponible.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ OBJETIVO GENERAL ══════════ -->
+  <div class="objetivo-section">
+    <p class="section-eyebrow">Objetivo del proceso</p>
+    <h2 class="section-title">Objetivo <span class="accent">general</span></h2>
+    <p>Acompañar a Annika en su transición de la natación hacia la gimnasia, construyendo primero la fuerza de core, hombros y muñecas necesaria para sostener el cuerpo en inversiones, y avanzando con progresiones seguras y personalizadas hacia la rueda lateral y el pino — dándole a Annika la base técnica y la confianza necesarias para incorporarse con seguridad a una clase de gimnasia colectiva.</p>
+  </div>
+
+  <!-- ══════════ PAQUETE Y PRIMERA CLASE ══════════ -->
+  <div class="clase-section">
+    <p class="section-eyebrow" style="color:#C89FE0;">Inicio del proceso</p>
+    <h2 class="section-title" style="color:var(--white);">CGC ELITE <span style="background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Premium</span></h2>
+    <div class="clase-grid">
+      <div class="clase-card">
+        <div class="clase-card-icon">📹</div>
+        <div class="clase-card-label">Clases en vivo</div>
+        <div class="clase-card-value">8</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🕓</div>
+        <div class="clase-card-label">Hora España</div>
+        <div class="clase-card-value">16:00</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🕘</div>
+        <div class="clase-card-label">Hora Perú</div>
+        <div class="clase-card-value">9:00 AM</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">💻</div>
+        <div class="clase-card-label">Modalidad</div>
+        <div class="clase-card-value">Virtual</div>
+      </div>
+    </div>
+    <div class="clase-nota">
+      España va 7 horas adelante de Perú en esta fecha — la ventana de las 16:00 h en España corresponde a las 9:00 am para Camila en Perú.
+    </div>
+    <div class="clase-plan">
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--purple),var(--blue));"></span>
+        <span>8 clases en vivo 1:1 — dentro de la ventana horaria 16:00 h España / 9:00 am Perú</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--orange),var(--pink));"></span>
+        <span>Acceso a clases grupales CGC en vivo como complemento entre sesiones</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--pink),var(--purple));"></span>
+        <span>Informes de seguimiento después de cada clase en vivo, documentando el avance hacia rueda lateral y pino</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informe de diagnóstico inicial · Julio 2026</p>
+    <div class="rainbow-line"></div>
+  </div>
+
+</div>
+</body>
+</html>
