@@ -175,6 +175,51 @@
     .lightbox-btn { width: 40px; height: 40px; font-size: 18px; }
     .lightbox-nav { gap: 14px; margin-top: 14px; }
   }
+
+  /* ===== IMÁGENES COMPLETAS EN CELULAR ===== */
+  @media (max-width: 600px) {
+    .inline-gallery.cols2, .inline-gallery.cols3, .inline-gallery.cols4 { grid-template-columns: 1fr !important; gap: 12px; }
+    .split-gallery { grid-template-columns: 1fr !important; gap: 12px; }
+    .inline-photo, .split-photo { aspect-ratio: auto !important; background: #100b18; }
+    .inline-photo img, .split-photo img { object-fit: contain !important; height: auto !important; width: 100% !important; display: block; }
+  }
+  /* ===== ANIMACIONES ===== */
+  @keyframes rainbowSlide { from { background-position: 0% 0; } to { background-position: 200% 0; } }
+  @keyframes accentShimmer { 0% { background-position: 50% 0%; } 100% { background-position: 50% 100%; } }
+  @keyframes logroGlow { 0%,100% { box-shadow: 0 8px 32px rgba(46,204,113,0.20); } 50% { box-shadow: 0 10px 44px rgba(46,204,113,0.42); } }
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  @keyframes fadeInDown { from { opacity:0; transform: translateY(-14px);} to { opacity:1; transform: translateY(0);} }
+  @keyframes popIn { 0% { opacity:0; transform: scale(.9);} 100% { opacity:1; transform: scale(1);} }
+
+  .rainbow { background-size: 200% 100%; animation: rainbowSlide 6s linear infinite alternate; }
+  .footer .rainbow-line { background-size: 200% 100%; animation: rainbowSlide 4s linear infinite alternate; }
+  .header::after { background-size: 100% 200%; animation: accentShimmer 5s ease-in-out infinite alternate; }
+  .logro-section::after { background-size: 100% 200%; animation: accentShimmer 5s ease-in-out infinite alternate; }
+  .logro-section { animation: logroGlow 3.2s ease-in-out infinite; }
+  .header h1 .grad { background-size: 200% auto; animation: rainbowSlide 5s linear infinite alternate; }
+  .badge-programa { animation: floatY 3.5s ease-in-out infinite; }
+  .section-title .accent { display: inline-block; }
+
+  /* entradas suaves */
+  .header { animation: fadeInDown 0.8s ease both; }
+  .badge-programa, .badge-informe, .badge-fecha { animation: popIn 0.6s ease both; }
+  .badge-informe { animation-delay: .1s; }
+  .badge-fecha { animation-delay: .2s; }
+
+  /* hover más vivo (desktop) */
+  @media (hover:hover) {
+    .item { transition: transform .25s ease, box-shadow .25s ease; }
+    .item:hover { transform: translateX(4px); }
+    .diag-card { transition: transform .25s ease; }
+    .diag-card:hover { transform: translateY(-4px); }
+    .prioridad-item { transition: transform .25s ease, box-shadow .25s ease; }
+    .prioridad-item:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(139,79,168,0.14); }
+    .inline-photo:hover img, .split-photo:hover img { transform: scale(1.05); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -341,14 +386,14 @@ document.addEventListener('keydown', function(e) {
   );
   animTargets.forEach((el, i) => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(28px)';
-    el.style.transition = `opacity 0.55s ease ${(i % 8) * 0.06}s, transform 0.55s ease ${(i % 8) * 0.06}s`;
+    el.style.transform = 'translateY(26px) scale(0.97)';
+    el.style.transition = `opacity 0.6s cubic-bezier(.22,1,.36,1) ${(i % 8) * 0.07}s, transform 0.6s cubic-bezier(.22,1,.36,1) ${(i % 8) * 0.07}s`;
   });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+        entry.target.style.transform = 'translateY(0) scale(1)';
         observer.unobserve(entry.target);
       }
     });
