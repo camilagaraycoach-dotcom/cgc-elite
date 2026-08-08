@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Informe CGC ELITE — Lia Ibarra</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #E8302A;
+    --orange: #F47B20;
+    --pink: #E5406A;
+    --purple: #8B4FA8;
+    --blue: #4A7FC1;
+    --dark: #1C1820;
+    --white: #ffffff;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F2F8;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── BARRA RAINBOW ─── */
+  .rainbow {
+    height: 6px;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  }
+
+  /* ─── WRAPPER ─── */
+  .page { max-width: 760px; margin: 0 auto; padding: 80px 24px 80px; }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 20px;
+    padding: 48px 56px 40px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .header-top {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .badge-programa {
+    font-size: 11px; font-weight: 800; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--white);
+    background: linear-gradient(to right, var(--purple), var(--blue));
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .badge-pais {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    border: 1.5px solid var(--orange);
+    padding: 7px 16px; border-radius: 4px;
+    display: inline-block;
+  }
+  .header h1 {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.1; color: var(--white);
+    margin-bottom: 8px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+  .header h1 .grad {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .header-sub {
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    font-weight: 400; letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .header-meta {
+    display: flex; flex-wrap: wrap; gap: 12px;
+  }
+  .meta-item {
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 10px 18px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .meta-icon { font-size: 18px; }
+  .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.45); font-weight: 600; display: block; }
+  .meta-value { font-size: 14px; font-weight: 700; color: var(--white); display: block; }
+
+  /* ─── SECCIÓN GENERAL ─── */
+  .section {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(28,24,32,0.07);
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 800; letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 10px;
+    color: var(--purple);
+  }
+  .section-title {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: clamp(22px, 4vw, 30px);
+    line-height: 1.1; margin-bottom: 22px;
+    color: var(--dark);
+  }
+  .section-title .accent { color: var(--pink); }
+  .section p {
+    font-size: 15px; line-height: 1.75; color: #444;
+    font-weight: 400;
+  }
+  .section p + p { margin-top: 14px; }
+
+  /* ─── BLOQUE DESTACADO ─── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1A0B2E, #2D1654);
+    border-radius: 12px; padding: 28px 28px;
+    margin-top: 24px;
+  }
+  .highlight-box p {
+    font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; font-weight: 300;
+  }
+  .highlight-box strong {
+    font-weight: 800;
+    color: var(--orange);
+  }
+
+  /* ─── LISTA DE ITEMS ─── */
+  .item-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px;
+    background: rgba(139,79,168,0.06);
+    border-left: 5px solid var(--purple);
+    border-radius: 0 10px 10px 0;
+  }
+  .item.red   { background: rgba(232,48,42,0.06);  border-left-color: var(--red); }
+  .item.orange{ background: rgba(244,123,32,0.07); border-left-color: var(--orange); }
+  .item.pink  { background: rgba(229,64,106,0.06); border-left-color: var(--pink); }
+  .item.blue  { background: rgba(74,127,193,0.07); border-left-color: var(--blue); }
+  .item-icon  { font-size: 22px; flex-shrink: 0; line-height: 1.4; }
+  .item-text  { font-size: 15px; color: #333; font-weight: 600; line-height: 1.5; }
+  .item-text span { display: block; font-size: 13px; font-weight: 400; color: #666; margin-top: 3px; }
+
+  /* ─── HORARIOS ─── */
+  .horario-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .horario-card {
+    flex: 1; min-width: 140px;
+    background: linear-gradient(135deg, #F0EEFF, #E8F4FF);
+    border-radius: 12px; padding: 18px 20px;
+    text-align: center;
+  }
+  .horario-dia { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 6px; }
+  .horario-info { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.4; }
+
+  /* ─── COMPROMISO BAR ─── */
+  .compromiso-wrap { margin-top: 20px; }
+  .compromiso-label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .compromiso-label span { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .compromiso-label strong { font-size: 16px; font-weight: 900; color: var(--purple); }
+  .bar-bg {
+    height: 12px; background: #EEE; border-radius: 99px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(to right, var(--purple), var(--pink), var(--orange));
+    width: 90%;
+    transition: width 1s ease;
+  }
+  .compromiso-nota {
+    font-size: 13px; color: #888; margin-top: 10px; font-style: italic;
+  }
+
+  /* ─── OBJETIVO GENERAL ─── */
+  .objetivo-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .objetivo-section::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to top, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .objetivo-section .section-eyebrow { color: #C89FE0; }
+  .objetivo-section .section-title { color: var(--white); }
+  .objetivo-section .section-title .accent {
+    background: linear-gradient(to right, var(--orange), var(--pink));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .objetivo-section p {
+    font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.8); font-weight: 400;
+  }
+
+  /* ─── CLASE VIRTUAL ─── */
+  .clase-section {
+    background: linear-gradient(160deg, #1A0B2E 0%, #2D1654 60%, #1A2744 100%);
+    border-radius: 16px; padding: 40px 36px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139,79,168,0.25);
+    position: relative; overflow: hidden;
+  }
+  .clase-section::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 6px; height: 100%;
+    background: linear-gradient(to bottom, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+  }
+  .clase-grid {
+    display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0;
+  }
+  .clase-card {
+    flex: 1; min-width: 120px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px 16px;
+    text-align: center;
+  }
+  .clase-card-icon { font-size: 28px; margin-bottom: 8px; }
+  .clase-card-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 6px;
+  }
+  .clase-card-value {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 22px; color: var(--white);
+  }
+  .clase-nota {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    font-style: italic; margin-bottom: 24px;
+    border-left: 3px solid rgba(255,255,255,0.15);
+    padding-left: 14px;
+  }
+  .clase-plan { display: flex; flex-direction: column; gap: 12px; }
+  .clase-plan-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
+  }
+  .clase-plan-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  /* ─── DIFICULTADES GRID ─── */
+  .dificultad-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .dificultad-card {
+    flex: 1; min-width: 200px;
+    background: linear-gradient(135deg, #F0EEFF, #FFF4EE);
+    border-radius: 12px; padding: 18px 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .dificultad-num {
+    font-family: 'Nunito', sans-serif; font-weight: 900;
+    font-size: 20px; color: var(--white);
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .dificultad-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center; padding: 24px 0 8px;
+  }
+  .footer p {
+    font-size: 12px; color: #AAA; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .footer .rainbow-line {
+    height: 4px; width: 80px; margin: 12px auto 0;
+    background: linear-gradient(to right, var(--red), var(--orange), var(--pink), var(--purple), var(--blue));
+    border-radius: 99px;
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    @page { margin: 14mm 12mm; size: A4; }
+    .rainbow { display: none; }
+    body { background: white; }
+    .page { padding: 0; max-width: 100%; }
+
+    .section,
+    .objetivo-section,
+    .clase-section,
+    .highlight-box,
+    .item,
+    .horario-card,
+    .clase-card,
+    .dificultad-card,
+    .clase-plan,
+    .meta-item,
+    .footer {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .section,
+    .objetivo-section,
+    .clase-section {
+      break-before: auto;
+      page-break-before: auto;
+    }
+
+    .item-list,
+    .horario-grid,
+    .clase-grid,
+    .dificultad-grid,
+    .clase-plan,
+    .header-meta {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .section,
+    .objetivo-section,
+    .clase-section {
+      margin-bottom: 14px;
+    }
+
+    .header {
+      margin-bottom: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow"></div>
+
+<div class="page">
+
+  <!-- ══════════ HEADER ══════════ -->
+  <div class="header">
+    <div class="header-top">
+      <span class="badge-programa">CGC ELITE 1:1</span>
+      <span class="badge-pais">México</span>
+    </div>
+    <h1><span class="grad">Lia</span><br>Ibarra</h1>
+    <p class="header-sub">Informe de diagnóstico y plan personalizado — Agosto 2026</p>
+    <div class="header-meta">
+      <div class="meta-item">
+        <span class="meta-icon">🎂</span>
+        <div>
+          <span class="meta-label">Edad</span>
+          <span class="meta-value">8 años</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📍</span>
+        <div>
+          <span class="meta-label">Ubicación</span>
+          <span class="meta-value">México</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💻</span>
+        <div>
+          <span class="meta-label">Modalidad</span>
+          <span class="meta-value">Virtual</span>
+        </div>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">🎗️</span>
+        <div>
+          <span class="meta-label">Disciplina</span>
+          <span class="meta-value">Gimnasia Rítmica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PERFIL DEL ATLETA ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Diagnóstico inicial</p>
+    <h2 class="section-title">Perfil del <span class="accent">atleta</span></h2>
+    <p>Lia tiene 8 años y acaba de terminar su primer año de competencia individual en gimnasia rítmica, en la categoría 5A. El resultado fue notable para un primer año: puesto 11 de 104 atletas a nivel nacional, con manos libres y pelota como sus aparatos de esta temporada.</p>
+    <p>El próximo ciclo la llevará a la categoría 4B (10-12 años), donde sumará cuerda a su repertorio junto con pelota y manos libres. Es un salto de exigencia técnica y física importante, y la familia quiere llegar a él con una base de dificultades corporales sólida.</p>
+    <p>Lia entrena en su academia con un volumen alto: 2 o más horas diarias, 5 días por semana. Disfrutó especialmente competir este año y llega con motivación genuina para seguir creciendo, no solo por exigencia externa.</p>
+  </div>
+
+  <!-- ══════════ LESIONES ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Consideraciones de salud</p>
+    <h2 class="section-title">Lesiones y <span class="accent">limitaciones</span></h2>
+    <p>Lia presenta dolor intermitente en el tobillo derecho, que aparece principalmente por la noche. Los estudios de imagen (rayos X y ultrasonido) descartan lesión estructural; la recomendación médica fue fortalecer el tobillo.</p>
+    <div class="item-list">
+      <div class="item orange">
+        <span class="item-icon">🦶</span>
+        <div class="item-text">Dolor intermitente — tobillo derecho
+          <span>Sin lesión estructural confirmada por imagen. Aparece sobre todo por la noche, después de la carga de entrenamiento del día.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">⚖️</span>
+        <div class="item-text">Hipótesis: desequilibrio de pierna dominante
+          <span>Lia es diestra y gira hacia la derecha, lo que puede generar sobrecarga asimétrica en el tobillo de ese lado.</span>
+        </div>
+      </div>
+      <div class="item blue">
+        <span class="item-icon">📅</span>
+        <div class="item-text">Volumen de entrenamiento alto
+          <span>2+ horas diarias, 5 días por semana en su academia — carga que requiere gestión activa de la recuperación.</span>
+        </div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p>El plan de fortalecimiento trabajará <strong>ambos tobillos</strong>, no solo el derecho, para corregir el desequilibrio de base y prevenir lesiones futuras. Se recomienda además una <strong>descarga muscular mensual</strong> (masaje) para gestionar la carga acumulada de su volumen de entreno.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ ENFOQUE DE COACHING / DIFICULTADES ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Plan técnico</p>
+    <h2 class="section-title">Dificultades <span class="accent">a trabajar</span></h2>
+    <p>El programa CGC ELITE 1:1 se enfocará exclusivamente en la <strong>técnica física de las dificultades</strong> (los elementos corporales de alto puntaje). La manipulación de aparatos —pelota, cuerda, manos libres— se sigue trabajando en la academia de Lia, sin duplicar esfuerzos.</p>
+    <p>Esta decisión responde a una lógica simple: una dificultad bien dominada se reutiliza en todas las rutinas de la temporada. Perfeccionar la base física es, por lo tanto, la inversión técnica más eficiente para elevar el puntaje general.</p>
+    <div class="dificultad-grid">
+      <div class="dificultad-card">
+        <span class="dificultad-num">1</span>
+        <span class="dificultad-name">Plancha a relevé</span>
+      </div>
+      <div class="dificultad-card">
+        <span class="dificultad-num">2</span>
+        <span class="dificultad-name">Giro en passé</span>
+      </div>
+      <div class="dificultad-card">
+        <span class="dificultad-num">3</span>
+        <span class="dificultad-name">Salto korzat</span>
+      </div>
+      <div class="dificultad-card">
+        <span class="dificultad-num">4</span>
+        <span class="dificultad-name">Elevación lateral a relevé</span>
+      </div>
+      <div class="dificultad-card">
+        <span class="dificultad-num">5</span>
+        <span class="dificultad-name">Equilibrio en passé</span>
+      </div>
+      <div class="dificultad-card">
+        <span class="dificultad-num">6</span>
+        <span class="dificultad-name">Vuelta de carro</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ MOTIVACIÓN ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Análisis interno</p>
+    <h2 class="section-title">Motivación y <span class="accent">necesidad detectada</span></h2>
+    <p>A Lia le gustó mucho competir este año y su familia quiere darle las herramientas para mejorar sus resultados en la siguiente temporada. No es una motivación impuesta desde afuera: la propia experiencia de competir fue lo que despertó las ganas de seguir creciendo.</p>
+    <p>Marco, su papá, es claro en que Lia "va a su ritmo" y que el proceso debe respetar sus tiempos — pero también confía en que, con guía técnica correcta, los resultados se van a reflejar cuando corresponda. Esa combinación de paciencia y exigencia técnica es exactamente el espacio que CGC ELITE viene a ocupar: un acompañamiento especializado en la base física que su academia no puede cubrir en el mismo nivel de personalización.</p>
+  </div>
+
+  <!-- ══════════ DISPONIBILIDAD ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Logística del proceso</p>
+    <h2 class="section-title">Disponibilidad y <span class="accent">modalidad</span></h2>
+    <p>Modalidad <strong>virtual</strong> desde México. Lia entrena de lunes a viernes en su academia (2+ h/día), por lo que el sábado a media mañana es su ventana disponible para la clase 1:1.</p>
+    <div class="horario-grid">
+      <div class="horario-card">
+        <div class="horario-dia">Sábado</div>
+        <div class="horario-info">11:00 am<br><span style="font-size:11px;color:#888;">Hora México · Clase 1:1</span></div>
+      </div>
+      <div class="horario-card" style="background: linear-gradient(135deg, #FFF0F0, #FFE8E8);">
+        <div class="horario-dia" style="color: var(--red);">Lun – Vie</div>
+        <div class="horario-info" style="color:#999;">Entreno academia<br><span style="font-size:11px;color:#bbb;">2+ h/día · Gimnasia rítmica</span></div>
+      </div>
+    </div>
+    <div class="item-list" style="margin-top: 20px;">
+      <div class="item blue">
+        <span class="item-icon">⭐</span>
+        <div class="item-text">Clase en vivo — Sábado fijo
+          <span>11:00 am hora México (= 12:00 pm mediodía Perú — Perú va 1 hora adelante)</span>
+        </div>
+      </div>
+      <div class="item orange">
+        <span class="item-icon">🧘</span>
+        <div class="item-text">Equipo necesario
+          <span>2 bloques de yoga · ligas de resistencia. La alfombra de la sala se mantiene — es adecuada para gimnasia rítmica.</span>
+        </div>
+      </div>
+      <div class="item">
+        <span class="item-icon">🎥</span>
+        <div class="item-text">Material de referencia
+          <span>Marco enviará los videos de las competencias de Lia, organizados por año, para el análisis técnico inicial de las dificultades.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ COMPROMISO ══════════ -->
+  <div class="section">
+    <p class="section-eyebrow">Evaluación interna</p>
+    <h2 class="section-title">Nivel de <span class="accent">compromiso</span></h2>
+    <p>Marco, papá de Lia, mostró claridad total sobre lo que busca desde la entrevista inicial: priorizar la técnica corporal por encima del trabajo de aparatos, entendiendo que eso ya se cubre en la academia. Se comprometió a enviar todos los videos de competencia de Lia organizados por año para el análisis técnico.</p>
+    <p>Lia, por su parte, ya sostiene un volumen de entrenamiento alto (2+ h/día, 5 días/semana) que demuestra constancia y disciplina para su edad. La combinación de un papá involucrado y una atleta con base de trabajo sólida son indicadores muy positivos para el proceso.</p>
+    <div class="compromiso-wrap">
+      <div class="compromiso-label">
+        <span>Nivel de compromiso estimado</span>
+        <strong>ALTO</strong>
+      </div>
+      <div class="bar-bg">
+        <div class="bar-fill"></div>
+      </div>
+      <p class="compromiso-nota">Marco es el punto de contacto principal. Se espera envío de videos de competencia y puntualidad en las sesiones de sábado.</p>
+    </div>
+  </div>
+
+  <!-- ══════════ OBJETIVO GENERAL ══════════ -->
+  <div class="objetivo-section">
+    <p class="section-eyebrow">Objetivo del proceso</p>
+    <h2 class="section-title">Objetivo <span class="accent">general</span></h2>
+    <p>Acompañar a Lia en el dominio técnico de sus seis dificultades corporales — plancha a relevé, giro en passé, salto korzat, elevación lateral a relevé, equilibrio en passé y vuelta de carro — con una base de fuerza y estabilidad de tobillo que la prepare de forma segura para el salto a la categoría 4B, mientras su academia sigue desarrollando el trabajo de aparatos.</p>
+  </div>
+
+  <!-- ══════════ PRIMERA CLASE VIRTUAL ══════════ -->
+  <div class="clase-section">
+    <p class="section-eyebrow" style="color:#C89FE0;">Inicio del proceso</p>
+    <h2 class="section-title" style="color:var(--white);">Primera clase <span style="background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">virtual</span></h2>
+    <div class="clase-grid">
+      <div class="clase-card">
+        <div class="clase-card-icon">📅</div>
+        <div class="clase-card-label">Día fijo</div>
+        <div class="clase-card-value">Sábado</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🕚</div>
+        <div class="clase-card-label">Hora México</div>
+        <div class="clase-card-value">11:00 AM</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">🕛</div>
+        <div class="clase-card-label">Hora Perú</div>
+        <div class="clase-card-value">12:00 PM</div>
+      </div>
+      <div class="clase-card">
+        <div class="clase-card-icon">💻</div>
+        <div class="clase-card-label">Modalidad</div>
+        <div class="clase-card-value">Virtual</div>
+      </div>
+    </div>
+    <div class="clase-nota">
+      Perú va 1 hora adelante de México — la clase empieza a las 11:00 am para Lia y al mediodía para Camila.
+    </div>
+    <div class="clase-plan">
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--purple),var(--blue));"></span>
+        <span>1 clase en vivo semanal — sábados 11:00 am México / 12:00 pm Perú</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--orange),var(--pink));"></span>
+        <span>Evaluación inicial: videos de competencias de Lia organizados por año — enviados por Marco antes de la primera clase</span>
+      </div>
+      <div class="clase-plan-item">
+        <span class="clase-plan-dot" style="background:linear-gradient(135deg,var(--pink),var(--purple));"></span>
+        <span>Foco 100% técnica corporal de las 6 dificultades — aparatos se mantienen a cargo de su academia</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <div class="footer">
+    <p>CGC ELITE 1:1 — Camila Garay Coach · Informe de diagnóstico inicial · Agosto 2026</p>
+    <div class="rainbow-line"></div>
+  </div>
+
+</div>
+</body>
+</html>
