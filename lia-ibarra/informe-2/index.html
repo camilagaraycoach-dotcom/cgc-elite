@@ -97,14 +97,14 @@
   .reco-section .section-title .accent { background:linear-gradient(to right,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
   .reco-section p { color:rgba(255,255,255,0.8);font-size:15px;line-height:1.75; }
 
-  /* FOTOS INLINE */
-  .inline-gallery { display:grid;gap:8px;margin-top:20px;margin-bottom:4px; }
-  .inline-gallery.cols3 { grid-template-columns: repeat(3,1fr); }
-  .inline-gallery.cols2 { grid-template-columns: repeat(2,1fr); }
-  .inline-gallery.cols1 { grid-template-columns: 1fr; }
-  .inline-photo { border-radius:10px;overflow:hidden;aspect-ratio:4/3;cursor:pointer;position:relative; }
-  .inline-photo img { width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform 0.2s ease;display:block; }
-  .inline-photo:hover img { transform:scale(1.04); }
+  /* FOTOS INLINE — imágenes completas, sin recorte */
+  .inline-gallery { display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;margin-bottom:4px; }
+  .inline-gallery.cols3 .inline-photo { flex:1 1 30%;min-width:150px; }
+  .inline-gallery.cols2 .inline-photo { flex:1 1 46%;min-width:180px; }
+  .inline-gallery.cols1 .inline-photo { flex:1 1 100%; }
+  .inline-photo { border-radius:10px;overflow:hidden;cursor:pointer;position:relative;background:#F0EEF5;display:flex;align-items:center;justify-content:center; }
+  .inline-photo img { width:100%;height:auto;display:block;object-fit:contain;transition:transform 0.2s ease; }
+  .inline-photo:hover img { transform:scale(1.03); }
 
   /* LIGHTBOX */
   .lightbox { display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.93);align-items:center;justify-content:center;flex-direction:column; }
@@ -165,13 +165,19 @@
     .prioridad-desc { font-size: 12px; }
     .logro-quote { padding: 14px 16px; }
     .logro-quote p { font-size: 14px; }
-    .inline-gallery.cols3 { grid-template-columns: repeat(2, 1fr); }
-    .inline-gallery { gap: 6px; }
-    .inline-photo { aspect-ratio: 4/3; border-radius: 8px; }
+    .inline-gallery { gap: 8px; }
+    .inline-gallery.cols3 .inline-photo,
+    .inline-gallery.cols2 .inline-photo { flex: 1 1 100%; min-width: unset; }
+    .inline-photo { border-radius: 8px; }
     .lightbox img { max-width: 96vw; max-height: 75vh; }
     .lightbox-close { top: 12px; right: 14px; width: 38px; height: 38px; font-size: 20px; }
     .lightbox-btn { width: 40px; height: 40px; font-size: 18px; }
     .lightbox-nav { gap: 14px; margin-top: 14px; }
+  }
+
+  /* ─── TABLET: 2 columnas en vez de 3 ─── */
+  @media (min-width: 601px) and (max-width: 860px) {
+    .inline-gallery.cols3 .inline-photo { flex: 1 1 46%; }
   }
 </style>
 </head>
